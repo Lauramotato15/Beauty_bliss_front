@@ -1,16 +1,19 @@
 <div class="cont">
     <!-- Barra lateral -->
     <div class="sidebar">
-        <h3>Menú</h3>
+        <div class="headerUser mt-3">
+            <h3>Name user</h3>
+            <img src="descarga.jpeg" class="imageUser" alt="ejemplo">
+        </div>
         <a routerLink="user/profile">Perfil</a>
-        <a href="#">Catalogo</a>
-        <a href="#">Carrito</a>
+        <a routerLink="product/catalog">Catalogo</a>
+        <a routerLink="product/cart" >Carrito</a>
         <a href="#">Mis compras</a>
-        <a href="#">Cerrar sesión</a>
+        <a href="">Cerrar sesión</a>
     </div>
 
     <!-- Contenido principal -->
     <div class="main-content">
-        <h1>Hola mundo</h1>
+        <auth-login-page></auth-login-page>
     </div>
 </div>

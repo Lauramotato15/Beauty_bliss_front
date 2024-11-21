@@ -1,0 +1,36 @@
+<form class="p-4 border rounded shadow-sm" [formGroup]="formLogin" (submit)="save()">
+    <h2 class="text-center mb-4">Iniciar sesión</h2>
+
+    <div class="mb-3">
+        <label for="InputEmail1" class="form-label">Correo Electrónico</label>
+        <input 
+            class="form-control" 
+            placeholder="Introduce tu correo" 
+            formControlName="username"
+        >
+
+        <span class="text-danger" *ngIf="forFieldValidator('username')">
+            {{messageError('username')}}
+        </span>
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+        <input 
+            class="form-control" 
+            placeholder="Introduce tu contraseña" 
+            formControlName="password"
+        >
+        <span class="text-danger" *ngIf="forFieldValidator('password')">
+            {{messageError('password')}}
+        </span>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <button class="btn btn-primary w-100">Iniciar sesión</button>
+    </div>
+
+    <div class="text-center">
+        <p class="mb-0"><a href="#" class="text-muted">Crear cuenta</a></p>
+    </div>
+</form>

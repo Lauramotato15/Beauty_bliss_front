@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SidebarPageComponent } from './pages/sidebar-page/sidebar-page.component';
 
 const routes: Routes = [
   {
-    path: 'home', 
+    path: 'home',
+    component: SidebarPageComponent, 
   }
 ];
 

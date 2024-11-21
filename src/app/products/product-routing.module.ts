@@ -5,13 +5,19 @@ import { ProductCatalogPageComponent } from './pages/product-catalog-page/produc
 
 const routes: Routes = [
   {
-    path: 'product/cart', 
-    component: ProductCartPageComponent,
+    path: '', 
+    children: [
+      {
+        path: 'cart',
+        component: ProductCartPageComponent,
+      }, 
+      {
+        path: 'catalog', 
+        component: ProductCatalogPageComponent, 
+      },
+    ]
   }, 
-  {
-    path: 'product/catalog', 
-    component: ProductCatalogPageComponent, 
-  },
+
 ];
 
 @NgModule({
