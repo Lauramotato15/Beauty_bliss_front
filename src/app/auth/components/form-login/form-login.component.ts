@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationErrorService } from '../../../shared/services/validation.error.service';
 import { AuthService } from '../../services/auth.service';
-import { Credencial } from '../../interface/credenciales.interface';
-import { Observable } from 'rxjs';
-import { environment as env } from '../../../../environments/environment.development';
-import { userTocken } from '../../interface/user-tocken.interface';
+import { Credencial } from '../../interface/credencial.interface';
+import { map, pipe } from 'rxjs';
 
 @Component({
   selector: 'auth-form-login',
@@ -23,7 +21,7 @@ export class FormLoginComponent {
 
   ngOnInit(): void {
     this.formLogin = this.fb.group({
-      username: ['', [Validators.required]],
+      email: ['', [Validators.required]],
       password: ['',[Validators.required, Validators.minLength(5)]],
     });
   }
@@ -45,8 +43,6 @@ export class FormLoginComponent {
   }
 
   public validatedAutenticacion(credenciales:Credencial){
-    return this.serviceLogin.login(credenciales).subscribe(() => {
-      console.log("Hola mundo"); 
-    }); 
+    const result = this.serviceLogin.login(credenciales).subscribe(resp => console.log(resp));
   }
 }

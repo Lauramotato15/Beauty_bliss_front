@@ -7,11 +7,11 @@
             <input 
                 class="form-control form-control-sm" 
                 placeholder="Introduce tu correo" 
-                formControlName="username"
+                formControlName="email"
                 autocomplete="off"
             >
-            <span class="text-danger" *ngIf="FieldValidator('username')">
-                {{messageError('username')}}
+            <span class="text-danger" *ngIf="FieldValidator('email')">
+                {{messageError('email')}}
             </span>
         </div>
 

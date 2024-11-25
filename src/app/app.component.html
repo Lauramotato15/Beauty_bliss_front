@@ -1,2 +1,2 @@
-<shared-sidebar-page *ngIf="false"></shared-sidebar-page>
-<div *ngIf="true"><shared-inicio-page></shared-inicio-page></div>
+<shared-sidebar-page *ngIf="isAuthenticated"></shared-sidebar-page>
+<div *ngIf="!isAuthenticated"><shared-inicio-page></shared-inicio-page></div>
