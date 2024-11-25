@@ -7,6 +7,7 @@ import { RegisterUserPageComponent } from './pages/register-user-page/register-u
 import { FormLoginComponent } from './components/form-login/form-login.component';
 import { UsersModule } from '../users/users.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     UsersModule, 
     ReactiveFormsModule, 
+    HttpClientModule,
   ]
 })
 export class AuthModule { }

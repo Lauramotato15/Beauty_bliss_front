@@ -8,23 +8,24 @@ export class ValidationErrorService{
     constructor() { }
     
     forFieldValidator(field:string, formLogin:FormGroup):boolean | null{ 
-        return formLogin.controls[field].errors 
-        && formLogin.controls[field].touched; 
+      return formLogin.controls[field].errors 
+      && formLogin.controls[field].touched; 
     }
 
     messageError(campo:string, formLogin:FormGroup):string | undefined{
-        if(!formLogin.controls[campo]) return; 
+      if(!formLogin.controls[campo]) return; 
     
-        formLogin.markAllAsTouched(); 
-        const errors = formLogin.controls[campo].errors || {}; 
-    
-        for(const key of Object.keys(errors)){
-          switch(key){
-            case 'required': 
-              return `*El ${campo} es requerido`
-            break;
-          }
+      formLogin.markAllAsTouched(); 
+      const errors = formLogin.controls[campo].errors || {}; 
+  
+      for(const key of Object.keys(errors)){
+        switch(key){
+          case 'required': 
+            return `*El ${campo} es requerido`
+          case 'minLength': 
+          return `*El ${campo} debe tener minimo 5 caracteres`
         }
-        return; 
+      }
+      return; 
     }
 }

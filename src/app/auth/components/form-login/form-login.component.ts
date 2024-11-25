@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationErrorService } from '../../../shared/services/validation.error.service';
+import { AuthService } from '../../services/auth.service';
+import { Credencial } from '../../interface/credenciales.interface';
+import { Observable } from 'rxjs';
+import { environment as env } from '../../../../environments/environment.development';
+import { userTocken } from '../../interface/user-tocken.interface';
 
 @Component({
   selector: 'auth-form-login',
@@ -11,6 +16,7 @@ export class FormLoginComponent {
   constructor(
     private fb: FormBuilder, 
     private validatorService:ValidationErrorService,
+    private serviceLogin: AuthService,
   ){}
 
   public formLogin!:FormGroup; 
@@ -31,7 +37,16 @@ export class FormLoginComponent {
   }
 
   save(){
-    this.formLogin.reset();
-    this.formLogin.markAllAsTouched();  
+    if(!this.formLogin.valid)return this.formLogin.markAllAsTouched();
+    
+    const formValues:Credencial = this.formLogin.value;
+    this.formLogin.reset(); 
+    this.validatedAutenticacion(formValues); 
+  }
+
+  public validatedAutenticacion(credenciales:Credencial){
+    return this.serviceLogin.login(credenciales).subscribe(() => {
+      console.log("Hola mundo"); 
+    }); 
   }
 }

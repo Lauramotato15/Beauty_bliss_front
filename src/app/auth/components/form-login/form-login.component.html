@@ -1,37 +1,39 @@
-<form class="p-4 border rounded shadow-sm " [formGroup]="formLogin" (submit)="save()">
-    <h2 class="text-center mb-4">Iniciar sesión</h2>
+<div class="container d-flex justify-content-center" style="min-height: 50vh;">
+    <form class="p-3 border rounded shadow-sm" [formGroup]="formLogin" (submit)="save()" style="max-width: 350px; width: 100%;">
+        <h4 class="text-center mb-3">Iniciar sesión</h4>
 
-    <div class="mb-3">
-        <label for="InputEmail1" class="form-label">Correo Electrónico</label>
-        <input 
-            class="form-control" 
-            placeholder="Introduce tu correo" 
-            formControlName="username"
-            autocomplete="off"
-        >
+        <div class="mb-3">
+            <label for="InputEmail1" class="form-label">Correo Electrónico</label>
+            <input 
+                class="form-control form-control-sm" 
+                placeholder="Introduce tu correo" 
+                formControlName="username"
+                autocomplete="off"
+            >
+            <span class="text-danger" *ngIf="FieldValidator('username')">
+                {{messageError('username')}}
+            </span>
+        </div>
 
-        <span class="text-danger" *ngIf="FieldValidator('username')">
-            {{messageError('username')}}
-        </span>
-    </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+            <input 
+                class="form-control form-control-sm" 
+                placeholder="Introduce tu contraseña" 
+                formControlName="password"
+                autocomplete="off"
+            >
+            <span class="text-danger" *ngIf="FieldValidator('password')">
+                {{messageError('password')}}
+            </span>
+        </div>
 
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-        <input 
-            class="form-control" 
-            placeholder="Introduce tu contraseña" 
-            formControlName="password"
-        >
-        <span class="text-danger" *ngIf="FieldValidator('password')">
-            {{messageError('password')}}
-        </span>
-    </div>
+        <div class="d-flex justify-content-center mb-3">
+            <button class="btn btn-primary w-100">Iniciar sesión</button>
+        </div>
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <button class="btn btn-primary w-100">Iniciar sesión</button>
-    </div>
-
-    <div class="text-center">
-        <p class="mb-0"><a href="#" class="text-muted">Crear cuenta</a></p>
-    </div>
-</form>
+        <div class="text-center">
+            <p class="mb-0"><a href="#" class="text-muted">Crear cuenta</a></p>
+        </div>
+    </form>
+</div>
