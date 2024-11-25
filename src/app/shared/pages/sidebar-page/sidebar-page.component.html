@@ -8,12 +8,12 @@
         <a routerLink="user/profile">Perfil</a>
         <a routerLink="product/catalog">Catalogo</a>
         <a routerLink="product/cart" >Carrito</a>
-        <a href="#">Mis compras</a>
+        <a routerLink="product/sales">Mis compras</a>
         <a href="">Cerrar sesión</a>
     </div>
 
     <!-- Contenido principal -->
     <div class="main-content">
-        <auth-login-page></auth-login-page>
+        <router-outlet></router-outlet>
     </div>
 </div>

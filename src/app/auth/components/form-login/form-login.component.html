@@ -1,4 +1,4 @@
-<form class="p-4 border rounded shadow-sm" [formGroup]="formLogin" (submit)="save()">
+<form class="p-4 border rounded shadow-sm " [formGroup]="formLogin" (submit)="save()">
     <h2 class="text-center mb-4">Iniciar sesión</h2>
 
     <div class="mb-3">
@@ -7,9 +7,10 @@
             class="form-control" 
             placeholder="Introduce tu correo" 
             formControlName="username"
+            autocomplete="off"
         >
 
-        <span class="text-danger" *ngIf="forFieldValidator('username')">
+        <span class="text-danger" *ngIf="FieldValidator('username')">
             {{messageError('username')}}
         </span>
     </div>
@@ -21,7 +22,7 @@
             placeholder="Introduce tu contraseña" 
             formControlName="password"
         >
-        <span class="text-danger" *ngIf="forFieldValidator('password')">
+        <span class="text-danger" *ngIf="FieldValidator('password')">
             {{messageError('password')}}
         </span>
     </div>

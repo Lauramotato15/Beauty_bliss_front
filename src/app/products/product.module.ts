@@ -7,6 +7,8 @@ import { ProductCatalogPageComponent } from './pages/product-catalog-page/produc
 import { CardCatalogComponent } from './components/card-catalog/card-catalog.component';
 import { CardProductCartComponent } from './components/card-cart/card-product-cart.component';
 import { SearchBoxComponent } from './components/search-box/search-box.component';
+import { ProductSalePageComponent } from './pages/product-sale-page/product-sale-page.component';
+import { TableSaleComponent } from './components/table-sale/table-sale.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,10 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
     ProductCatalogPageComponent,
     CardProductCartComponent,
     SearchBoxComponent,
+    ProductSalePageComponent,
+    TableSaleComponent,
   ],
-  exports: [
-    CardCatalogComponent,
-    ProductCartPageComponent,
-    ProductCatalogPageComponent,
-  ], 
+  exports: [], 
   imports: [
     CommonModule,
     ProductRoutingModule,
