@@ -4,6 +4,7 @@ import { ValidationErrorService } from '../../../shared/services/validation.erro
 import { AuthService } from '../../services/auth.service';
 import { Credencial } from '../../interface/credencial.interface';
 import { map, pipe, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'auth-form-login',

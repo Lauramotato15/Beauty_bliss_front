@@ -66,10 +66,10 @@
     </div>
 
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <button class="btn btn-primary w-100">Registrar</button>
+        <button class="btn btn-primary w-100">Guardar</button>
     </div>
 
-    <div class="text-center">
+    <div class="text-center" *ngIf="!infoTok">
         <p class="mb-0">¿Ya tienes una cuenta? <a routerLink="/auth/login" class="text-muted">Inicia sesión</a></p>
     </div>
 </form>

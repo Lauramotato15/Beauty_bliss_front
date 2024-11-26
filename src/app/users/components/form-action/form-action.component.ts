@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators as val} from '@angular/forms';
 import { ValidationErrorService } from '../../../shared/services/validation.error.service';
-import { User } from '../../interface/user.interface';
 import { UserUpdate } from '../../interface/user-update.interface';
 import { UserService } from '../../services/user.service';
+import { userToken } from '../../../auth/interface/user-token.interface';
 
 @Component({
   selector: 'users-form-action',
@@ -18,7 +18,7 @@ export class FormActionComponent {
   public title:string = ''; 
 
   @Input()
-  public user?:User;
+  public infoTok?:userToken;
   private file!: File;
 
   constructor(
@@ -29,8 +29,8 @@ export class FormActionComponent {
 
   ngOnInit(): void {
     this.formAction = this.fb.group({
-      name: [this.user?.name, [val.required]],
-      email: [{value: this.user?.email, disabled: this.user?.email}, [val.required,]],
+      name: [this.infoTok?.user.name, [val.required]],
+      email: [{value: this.infoTok?.user.email, disabled: this.infoTok?.user.email}, [val.required,]],
       password: ['',[val.required, val.minLength(5)]],
       confirmPassword: ['', [val.required]],
     }, 
@@ -62,8 +62,8 @@ export class FormActionComponent {
     const formValues:UserUpdate = this.formAction.value;
     this.formAction.reset(); 
 
-    if(this.user){
-      this.userService.update({...formValues, photo: this.file})
+    if(this.infoTok?.user){
+      this.userService.update({...formValues, photo: this.file}, this.infoTok.token)
       .subscribe(resp => {
         console.log("editado"); 
         console.log(resp); 

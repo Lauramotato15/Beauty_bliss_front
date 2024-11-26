@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../interface/user.interface';
 import { environment as env } from '../../../environments/environment.development';
@@ -22,16 +22,20 @@ export class UserService {
         return this.http.post<ResponseLogin>(`${env.apiUrl}/user/register`, fData); 
     }
 
-    update(params:UserUpdate):Observable<ResponseLogin>{
+    update(params:UserUpdate, token:string):Observable<string>{
         const fData = new FormData();
         fData.append("name", params.name);
         fData.append("email", params.email);
         fData.append("password", params.password);
 
+        const headers = new HttpHeaders({
+            'Authorization': `Bearer ${token}`
+        });
+        
         if(params.photo){
             fData.append("photo", params.photo);
         }
 
-        return this.http.post<ResponseLogin>(`${env.apiUrl}/user/update/me`,fData);
+        return this.http.put<string>(`${env.apiUrl}/user/update/me`,fData, {headers});
     }
 }
