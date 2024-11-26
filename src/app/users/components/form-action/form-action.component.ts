@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators as val} from '@angular/forms';
 import { ValidationErrorService } from '../../../shared/services/validation.error.service';
 import { UserUpdate } from '../../interface/user-update.interface';
 import { UserService } from '../../services/user.service';
 import { userToken } from '../../../auth/interface/user-token.interface';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'users-form-action',
@@ -11,6 +12,8 @@ import { userToken } from '../../../auth/interface/user-token.interface';
   styleUrl: './form-action.component.css'
 })
 export class FormActionComponent {
+
+  @ViewChild("filePicker") private filePicker!: ElementRef<HTMLInputElement>;
 
   public formAction!:FormGroup; 
   
@@ -60,23 +63,30 @@ export class FormActionComponent {
     if(!this.formAction.valid)return this.formAction.markAllAsTouched();
 
     const formValues:UserUpdate = this.formAction.value;
-    this.formAction.reset(); 
     
     if(this.infoTok?.user){
       
       const {token, user} = this.infoTok; 
-      const {id} = user; 
-
+      
       this.userService.update({...formValues, photo: this.file}, token)
       .subscribe(resp => {
-        console.log("editado"); 
-        console.log(resp); 
+        this.formAction.reset();
+        this.filePicker.nativeElement.value = '';
+        swal({
+          icon: "success",
+          title: "Información guardada con exito",
+          timer: 1500
+        });
       }); 
     }else{
       this.userService.register({...formValues, photo: this.file})
       .subscribe(resp => {
         if(resp.success){
-          alert("Registrado con éxito"); 
+          swal({
+            icon: "success",
+            title: "Información registrada con exito",
+            timer: 1500
+          });
         }
       });
     }

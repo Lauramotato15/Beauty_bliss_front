@@ -36,6 +36,6 @@ export class UserService {
             fData.append("photo", params.photo);
         }
 
-        return this.http.put<string>(`${env.apiUrl}/user/update/me`,fData, {headers});
+        return this.http.post<string>(`${env.apiUrl}/user/update/me`,fData, {headers});
     }
 }

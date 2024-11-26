@@ -10,9 +10,9 @@ export class ValidationErrorService{
     
   forFieldValidator(field:string, formLogin:FormGroup):boolean { 
     if(formLogin.controls[field].errors && formLogin.controls[field].touched){
-      return false; 
+      return true; 
     }
-    return true; 
+    return false; 
   }
 
   messageError(field:string, formLogin:FormGroup):string | undefined{

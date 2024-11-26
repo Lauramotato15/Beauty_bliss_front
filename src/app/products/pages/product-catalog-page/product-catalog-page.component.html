@@ -1,6 +1,6 @@
 <app-search-box></app-search-box>
 <div class="row">
-    <div class="col">
-        <card-catalog></card-catalog>
+    <div class="col" *ngFor="let product of products">
+        <card-catalog [product]="product"></card-catalog>
     </div>
 </div>

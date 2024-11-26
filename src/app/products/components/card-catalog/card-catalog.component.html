@@ -4,13 +4,13 @@
     <h2 class="accordion-header">
       <img 
         aria-controls="collapseOne" 
-        src="/descarga.jpeg" 
+        src="/descarga.jpg" 
         alt="ejemplo" 
         width="100%"
       >
 
       <div class="d-flex justify-content-center align-items-center">
-        <h4 class="mx-2 mt-1">Producto</h4>
+        <h4 class="mx-2 mt-1">{{product.name}}</h4>
         <i class="fa-regular fa-eye fs-5 text-center" 
           type="button" 
           data-bs-toggle="collapse" 
@@ -24,18 +24,11 @@
       <div class="accordion-body">
         <!--cuerpo de card-->
         <p class="card-text">
-          <strong>Precio: </strong> $19.99
+          <strong>Precio: </strong> {{product.price}}
         </p>
         <p class="card-text">
-          <strong>Descripción: </strong> Texto de relleno
+          <strong>Category: </strong> {{product.category.name}}
         </p>
-
-        <!-- Contenedor para los botones de incrementar y decrementar -->
-        <div class="d-flex justify-content-center align-items-center">
-          <button class="btn btn-secondary mx-2">-</button>
-          <p class="mx-2">1</p>
-          <button class="btn btn-secondary mx-2">+</button>
-        </div>
       </div>
       </div>
   </div>

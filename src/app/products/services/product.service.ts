@@ -23,4 +23,15 @@ export class ProductService {
 
         return this.http.get<ApiResponse>(`${env.apiUrl}/product`, {headers});
     }
+
+    findProducts():Observable<ApiResponse>{
+
+        this.token= this.serviceAuth.loadLocalStorage('auth'); 
+
+        const headers = new HttpHeaders({
+            'Authorization': `Bearer ${this.token.token}`
+        });
+
+        return this.http.get<ApiResponse>(`${env.apiUrl}/product`, {headers});
+    }
 }

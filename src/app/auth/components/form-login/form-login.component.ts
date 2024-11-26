@@ -21,11 +21,6 @@ export class FormLoginComponent  implements OnDestroy{
 
   public formLogin!:FormGroup; 
 
-  /**
-  * Método que inicializa el formulario de inicio de sesión con las validaciones necesarias.
-  * se invoca automáticamente cuando el componente es inicializado.
-  * @returns void
-  */
   ngOnInit(): void {
     this.formLogin = this.fb.group({
       email: ['', [Validators.required]],
@@ -33,10 +28,6 @@ export class FormLoginComponent  implements OnDestroy{
     });
   }
 
-  /**
-  * Método para validar campos de formulario 
-  * @returns boolean o null 
-  */
   fieldValidator(field:string):boolean | null{ 
     return this.validatorService.forFieldValidator(field, this.formLogin);
   }
