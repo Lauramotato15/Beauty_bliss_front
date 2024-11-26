@@ -1,6 +1,8 @@
-<app-search-box></app-search-box>
-<div class="row">
-    <div class="col" *ngFor="let product of products">
-        <card-catalog [product]="product"></card-catalog>
+<div class="container">
+    <app-search-box (findByNameProduct)="findbyName($event)"></app-search-box>
+    <div class="row">
+        <div class="col-lg-3 mb-3" *ngFor="let product of products">
+            <card-catalog [product]="product" (deleteCard)="delete($event)"></card-catalog>
+        </div>
     </div>
 </div>

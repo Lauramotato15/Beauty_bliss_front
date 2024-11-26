@@ -1,6 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ProductService } from '../../services/product.service';
-import { Subscription } from 'rxjs';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../interface/product.interface';
 @Component({
   selector: 'card-catalog',
@@ -8,7 +6,11 @@ import { Product } from '../../interface/product.interface';
   styleUrl: './card-catalog.component.css',
 })
 export class CardCatalogComponent{
+  @Input() public product!:Product;
 
-  @Input()
-  public product!:Product;
+  @Output() deleteCard: EventEmitter<number> = new EventEmitter<number>();
+
+  deleteOne(id:number){
+    this.deleteCard.emit(id); 
+  }
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Product } from '../../interface/product.interface';
 
 @Component({
   selector: 'card-cart',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class CardProductCartComponent {
 
+  @Input() public product!:Product; 
 }

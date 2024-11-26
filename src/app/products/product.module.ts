@@ -10,6 +10,7 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
 import { ProductSalePageComponent } from './pages/product-sale-page/product-sale-page.component';
 import { TableSaleComponent } from './components/table-sale/table-sale.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     ProductRoutingModule,
     HttpClientModule, 
+    ReactiveFormsModule,
   ]
 })
 export class ProductModule { 

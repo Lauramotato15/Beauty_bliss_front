@@ -1,7 +1,7 @@
 import { AuthService } from '../../services/auth.service';
 import { Component, OnDestroy } from '@angular/core';
 import { Credencial } from '../../interface/credencial.interface';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators as val} from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ValidationErrorService } from '../../../shared/services/validation.error.service';
 
@@ -12,6 +12,7 @@ import { ValidationErrorService } from '../../../shared/services/validation.erro
 export class FormLoginComponent  implements OnDestroy{
 
   public subs:Subscription = new Subscription(); 
+  public formLogin!:FormGroup; 
 
   constructor(
     private fb: FormBuilder, 
@@ -19,12 +20,10 @@ export class FormLoginComponent  implements OnDestroy{
     private serviceLogin: AuthService,
   ){}
 
-  public formLogin!:FormGroup; 
-
   ngOnInit(): void {
     this.formLogin = this.fb.group({
-      email: ['', [Validators.required]],
-      password: ['',[Validators.required]],
+      email: ['', [val.required]],
+      password: ['',[val.required]],
     });
   }
 

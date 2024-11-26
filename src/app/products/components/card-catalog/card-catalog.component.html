@@ -14,14 +14,13 @@
         <i class="fa-regular fa-eye fs-5 text-center" 
           type="button" 
           data-bs-toggle="collapse" 
-          data-bs-target="#collapseOne" 
-          aria-expanded="true">
+          [attr.data-bs-target]="'#' + product.id" aria-expanded="true">
         </i>
       </div>
     </h2>
 
-    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
+    <div [id]="product.id" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body text-center">
         <!--cuerpo de card-->
         <p class="card-text">
           <strong>Precio: </strong> {{product.price}}
@@ -30,6 +29,10 @@
           <strong>Category: </strong> {{product.category.name}}
         </p>
       </div>
+      <div class="d-flex justify-content-center mb-2">
+        <button class="btn btn-danger mx-3" (click)="deleteOne(product.id)">Eliminar</button>
+        <button class="btn btn-outline-success"><i class="fa-solid fa-cart-plus"></i></button>
+      </div>      
       </div>
   </div>
 </div>

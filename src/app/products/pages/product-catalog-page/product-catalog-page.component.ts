@@ -9,21 +9,45 @@ import { ProductService } from '../../services/product.service';
   styleUrl: './product-catalog-page.component.css'
 })
 export class ProductCatalogPageComponent implements OnInit, OnDestroy{
-  public sub?:Subscription;
+  public subAll?:Subscription;
   public products:Product[] = []; 
 
 
   constructor(private serviceProduct: ProductService){}
 
   ngOnInit(): void {
-    this.sub = this.serviceProduct.getAllProducts().subscribe(products => {
+    this.allProducts();
+  }
+
+  allProducts(){
+    this.subAll = this.serviceProduct.getAllProducts().subscribe(products => {
       if(products.data){
         this.products = products.data; 
       }
     })
   }
 
+  findbyName(value:string){
+    this.serviceProduct.findProducts(value).subscribe(product => {
+      if(product.success){
+        this.products.splice(0, this.products.length, product.data);
+      }
+      
+      if(!product.success){
+        this.allProducts(); 
+      }
+    })
+  }
+
+  delete(id:number){
+    this.serviceProduct.deleteProducts(id).subscribe(resp => {
+      if(resp){
+        this.products = this.products.filter(product => product.id !== id);
+      }
+    });
+  }
+
   ngOnDestroy(): void {
-    this.sub?.unsubscribe; 
+    this.subAll?.unsubscribe; 
   }
 }

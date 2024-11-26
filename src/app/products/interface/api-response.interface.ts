@@ -1,7 +1,13 @@
 import { Product } from "./product.interface";
 
-  export interface ApiResponse {
-    data: Product[];  // 'data' es un array de objetos 'Product'
+  export interface ApiResponseAll {
+    data: Product[]; 
+    status: number;
+    success: boolean;
+  }
+
+  export interface ApiResponseOne {
+    data: Product;  
     status: number;
     success: boolean;
   }

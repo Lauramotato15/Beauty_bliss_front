@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators as val} from '@angular/forms';
 
 @Component({
   selector: 'app-search-box',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class SearchBoxComponent {
 
+  public valueSearch!:string;
+  @Output() findByNameProduct: EventEmitter<string> = new EventEmitter<string>();
+
+  @ViewChild('name') public inputSearch!: ElementRef;
+
+  find(){ 
+    this.valueSearch= this.inputSearch.nativeElement.value
+    this.findByNameProduct.emit(this.valueSearch);
+    this.valueSearch= this.inputSearch.nativeElement.value = ''; 
+  }
 }
