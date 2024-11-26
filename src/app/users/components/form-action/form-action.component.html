@@ -1,44 +1,75 @@
-<form class="p-4 border rounded shadow-sm" style="max-width: 500px; margin: auto;">
-    <h2 class="text-center mb-4">Crear una cuenta</h2>
+<form class="p-4 border rounded shadow-sm" (submit)="save()" [formGroup]="formAction">
+    <h2 class="text-center mb-4">{{title}}</h2>
 
     <div class="mb-3">
         <label for="Name" class="form-label">Nombre</label>
         <input 
+            formControlName="name"
+            autocomplete="off"
             type="text" 
             class="form-control" 
             placeholder="Nombre" 
         >
+        <span class="text-danger" *ngIf="fieldValidator('name')">
+            {{messageError('name')}}
+        </span>
     </div>
 
     <div class="mb-3">
         <label for="Email" class="form-label">Correo Electrónico</label>
         <input 
-            class="form-control" 
+            formControlName="email"
+            autocomplete="off"
+            class="form-control"
             placeholder="Correo electrónico" 
         >
+        <span class="text-danger" *ngIf="fieldValidator('email')">
+            {{messageError('email')}}
+        </span>
     </div>
 
     <div class="mb-3">
         <label for="Password" class="form-label">Contraseña</label>
         <input 
+            formControlName="password"
+            autocomplete="off"
             class="form-control" 
             placeholder="Contraseña" 
         >
+        <span class="text-danger" *ngIf="fieldValidator('password')">
+            {{messageError('password')}}
+        </span>
     </div>
 
     <div class="mb-3">
         <label for="ConfirmPassword" class="form-label">Confirmar Contraseña</label>
         <input 
+            formControlName="confirmPassword"
+            autocomplete="off"
             class="form-control" 
             placeholder="Confirma tu contraseña" 
+        >
+        <span class="text-danger" *ngIf="formAction.hasError('notEqual') && formAction.get('confirmPassword')?.touched">
+            <small class="text-danger">*Las contraseñas no coinciden.</small>
+        </span>
+    </div>
+
+    <div class="mb-3">
+        <label for="Photo" class="form-label">Subir Foto</label>
+        <input 
+            #filePicker (change)="onImagePicked($event)"
+            formControlName="photo"
+            type="file" 
+            class="form-control" 
+            id="Photo"
         >
     </div>
 
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <button type="submit" class="btn btn-primary w-100">Registrar</button>
+        <button class="btn btn-primary w-100">Registrar</button>
     </div>
 
     <div class="text-center">
-        <p class="mb-0">¿Ya tienes una cuenta? <a href="#" class="text-muted">Inicia sesión</a></p>
+        <p class="mb-0">¿Ya tienes una cuenta? <a routerLink="/auth/login" class="text-muted">Inicia sesión</a></p>
     </div>
 </form>

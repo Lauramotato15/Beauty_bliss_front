@@ -6,17 +6,12 @@ import { AuthService } from './auth/services/auth.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
 
-  public isAuthenticated!:boolean; 
+  get isAuthenticated(){
+   return localStorage.getItem('auth'); 
+  }
 
   constructor(private serviceAuth: AuthService){}
 
-  ngOnInit(): void {
-    this.serviceAuth.isAutenticated.subscribe(resp => {
-      this.isAuthenticated = resp; 
-      console.log("soy app");
-      console.log(this.isAuthenticated);
-    }); 
-  }
 }

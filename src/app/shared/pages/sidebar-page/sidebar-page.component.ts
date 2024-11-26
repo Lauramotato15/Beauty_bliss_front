@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: './sidebar-page.component.css'
 })
 export class SidebarPageComponent {
-
+  logout(event: Event){
+    event.stopPropagation();
+    localStorage.removeItem('auth');
+  }
 }

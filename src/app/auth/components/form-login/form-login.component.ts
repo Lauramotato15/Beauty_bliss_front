@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationErrorService } from '../../../shared/services/validation.error.service';
 import { AuthService } from '../../services/auth.service';
 import { Credencial } from '../../interface/credencial.interface';
-import { map, pipe } from 'rxjs';
+import { map, pipe, Subscription } from 'rxjs';
 
 @Component({
   selector: 'auth-form-login',
   templateUrl: './form-login.component.html',
 })
-export class FormLoginComponent {
+export class FormLoginComponent  implements OnDestroy{
+
+  public message:string = '';
+  public subs:Subscription = new Subscription(); 
 
   constructor(
     private fb: FormBuilder, 
@@ -22,11 +25,11 @@ export class FormLoginComponent {
   ngOnInit(): void {
     this.formLogin = this.fb.group({
       email: ['', [Validators.required]],
-      password: ['',[Validators.required, Validators.minLength(5)]],
+      password: ['',[Validators.required]],
     });
   }
 
-  FieldValidator(field:string):boolean | null{ 
+  fieldValidator(field:string):boolean | null{ 
     return this.validatorService.forFieldValidator(field, this.formLogin);
   }
 
@@ -43,6 +46,10 @@ export class FormLoginComponent {
   }
 
   public validatedAutenticacion(credenciales:Credencial){
-    const result = this.serviceLogin.login(credenciales).subscribe(resp => console.log(resp));
+    this.subs = this.serviceLogin.login(credenciales).subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe(); 
   }
 }

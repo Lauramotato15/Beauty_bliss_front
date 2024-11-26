@@ -6,8 +6,9 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterUserPageComponent } from './pages/register-user-page/register-user-page.component';
 import { FormLoginComponent } from './components/form-login/form-login.component';
 import { UsersModule } from '../users/users.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     UsersModule, 
     ReactiveFormsModule, 
     HttpClientModule,
+    RouterModule,
   ]
 })
 export class AuthModule { }

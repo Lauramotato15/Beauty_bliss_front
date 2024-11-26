@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SidebarPageComponent } from './pages/sidebar-page/sidebar-page.component';
+import { InicioPageComponent } from './pages/inicio-page/inicio-page.component';
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: SidebarPageComponent, 
+    path: '**',
+    component: InicioPageComponent, 
   }
 ];
 

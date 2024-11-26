@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { UsersRoutingModule } from './users-routing.module';
 import { FormActionComponent } from './components/form-action/form-action.component';
 import { UpdateUserPageComponent } from './pages/update-user-page/update-user-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { UpdateUserPageComponent } from './pages/update-user-page/update-user-pa
   ],
   imports: [
     CommonModule,
-    UsersRoutingModule
+    UsersRoutingModule, 
+    ReactiveFormsModule,
   ]
 })
 export class UsersModule { }

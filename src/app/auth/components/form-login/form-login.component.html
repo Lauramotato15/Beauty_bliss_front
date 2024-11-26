@@ -10,7 +10,7 @@
                 formControlName="email"
                 autocomplete="off"
             >
-            <span class="text-danger" *ngIf="FieldValidator('email')">
+            <span class="text-danger" *ngIf="fieldValidator('email')">
                 {{messageError('email')}}
             </span>
         </div>
@@ -23,7 +23,7 @@
                 formControlName="password"
                 autocomplete="off"
             >
-            <span class="text-danger" *ngIf="FieldValidator('password')">
+            <span class="text-danger" *ngIf="fieldValidator('password')">
                 {{messageError('password')}}
             </span>
         </div>
@@ -33,7 +33,7 @@
         </div>
 
         <div class="text-center">
-            <p class="mb-0"><a href="#" class="text-muted">Crear cuenta</a></p>
+            <p class="mb-0"><a routerLink="/auth/register" class="text-muted">Crear cuenta</a></p>
         </div>
     </form>
 </div>

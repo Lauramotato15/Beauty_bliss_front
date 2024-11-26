@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthModule } from './auth/auth.module';
 
 const routes: Routes = [
   {
@@ -9,6 +10,10 @@ const routes: Routes = [
   {
     path: 'user', 
     loadChildren: () => import('./users/users.module').then(mu => mu.UsersModule)
+  },
+  {
+    path: 'auth', 
+    loadChildren: () => import('./auth/auth.module').then(ma => ma.AuthModule)
   },
 ];
 
