@@ -31,8 +31,8 @@ export class FormActionComponent {
     this.formAction = this.fb.group({
       name: [this.infoTok?.user.name, [val.required]],
       email: [{value: this.infoTok?.user.email, disabled: this.infoTok?.user.email}, [val.required,]],
-      password: ['',[val.required, val.minLength(5)]],
-      confirmPassword: ['', [val.required]],
+      password: ['', this.getNameValidators()],
+      confirmPassword: ['', this.getNameValidators()],
     }, 
     {
       validators: [
@@ -58,12 +58,16 @@ export class FormActionComponent {
 
   save(){
     if(!this.formAction.valid)return this.formAction.markAllAsTouched();
-    
+
     const formValues:UserUpdate = this.formAction.value;
     this.formAction.reset(); 
-
+    
     if(this.infoTok?.user){
-      this.userService.update({...formValues, photo: this.file}, this.infoTok.token)
+      
+      const {token, user} = this.infoTok; 
+      const {id} = user; 
+
+      this.userService.update({...formValues, photo: this.file}, token)
       .subscribe(resp => {
         console.log("editado"); 
         console.log(resp); 
@@ -76,5 +80,13 @@ export class FormActionComponent {
         }
       });
     }
+  }
+
+  getNameValidators() {
+    if (this.infoTok?.user.name) {
+      return [ val.minLength(5),];
+    }
+
+    return [val.required, val.minLength(5)];
   }
 }

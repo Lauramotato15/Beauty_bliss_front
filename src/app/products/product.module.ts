@@ -9,6 +9,7 @@ import { CardProductCartComponent } from './components/card-cart/card-product-ca
 import { SearchBoxComponent } from './components/search-box/search-box.component';
 import { ProductSalePageComponent } from './pages/product-sale-page/product-sale-page.component';
 import { TableSaleComponent } from './components/table-sale/table-sale.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { TableSaleComponent } from './components/table-sale/table-sale.component
   imports: [
     CommonModule,
     ProductRoutingModule,
+    HttpClientModule, 
   ]
 })
 export class ProductModule { 

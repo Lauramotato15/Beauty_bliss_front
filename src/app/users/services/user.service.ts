@@ -31,7 +31,7 @@ export class UserService {
         const headers = new HttpHeaders({
             'Authorization': `Bearer ${token}`
         });
-        
+
         if(params.photo){
             fData.append("photo", params.photo);
         }

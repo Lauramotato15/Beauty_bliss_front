@@ -1,10 +1,9 @@
-import { Component, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ValidationErrorService } from '../../../shared/services/validation.error.service';
 import { AuthService } from '../../services/auth.service';
+import { Component, OnDestroy } from '@angular/core';
 import { Credencial } from '../../interface/credencial.interface';
-import { map, pipe, Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { ValidationErrorService } from '../../../shared/services/validation.error.service';
 
 @Component({
   selector: 'auth-form-login',
@@ -12,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class FormLoginComponent  implements OnDestroy{
 
-  public message:string = '';
   public subs:Subscription = new Subscription(); 
 
   constructor(
@@ -23,6 +21,11 @@ export class FormLoginComponent  implements OnDestroy{
 
   public formLogin!:FormGroup; 
 
+  /**
+  * Método que inicializa el formulario de inicio de sesión con las validaciones necesarias.
+  * se invoca automáticamente cuando el componente es inicializado.
+  * @returns void
+  */
   ngOnInit(): void {
     this.formLogin = this.fb.group({
       email: ['', [Validators.required]],
@@ -30,6 +33,10 @@ export class FormLoginComponent  implements OnDestroy{
     });
   }
 
+  /**
+  * Método para validar campos de formulario 
+  * @returns boolean o null 
+  */
   fieldValidator(field:string):boolean | null{ 
     return this.validatorService.forFieldValidator(field, this.formLogin);
   }

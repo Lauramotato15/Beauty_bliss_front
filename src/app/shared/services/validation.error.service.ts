@@ -8,9 +8,11 @@ export class ValidationErrorService{
 
   constructor() { }
     
-  forFieldValidator(field:string, formLogin:FormGroup):boolean | null{ 
-    return formLogin.controls[field].errors 
-    && formLogin.controls[field].touched; 
+  forFieldValidator(field:string, formLogin:FormGroup):boolean { 
+    if(formLogin.controls[field].errors && formLogin.controls[field].touched){
+      return false; 
+    }
+    return true; 
   }
 
   messageError(field:string, formLogin:FormGroup):string | undefined{

@@ -15,7 +15,7 @@ export class AuthService{
     login(params:Credencial):Observable<ResponseLogin>{
         return this.http.post<ResponseLogin>(`${env.apiUrl}/auth/login`,params)
         .pipe(
-            tap(resp => resp.success === true ? this.saveUserLogueado(resp.data) : alert("Usuario o contraseña equivocado"))
+            tap(resp => resp.success === true ? this.saveUserLocalStorage(resp.data) : alert("Usuario o contraseña equivocado"))
         );
     }
 
@@ -37,8 +37,16 @@ export class AuthService{
         });
     }
 
-    saveUserLogueado(infoToken:userToken){
+    saveUserLocalStorage(infoToken:userToken){
         localStorage.setItem('auth', JSON.stringify(infoToken)); 
         this.route.navigate(['/sidebar']);
     }   
+
+    loadLocalStorage(key:string):userToken{
+        const storedAuth = localStorage.getItem('auth');
+        if(storedAuth){
+            return JSON.parse(storedAuth) as userToken;
+        }
+        return {} as userToken
+    }
 }
