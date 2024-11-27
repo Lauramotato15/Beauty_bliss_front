@@ -11,6 +11,7 @@ import { ProductSalePageComponent } from './pages/product-sale-page/product-sale
 import { TableSaleComponent } from './components/table-sale/table-sale.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SelectFilterComponent } from './components/select-filter/select-filter.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     SearchBoxComponent,
     ProductSalePageComponent,
     TableSaleComponent,
+    SelectFilterComponent, 
   ],
   exports: [], 
   imports: [
