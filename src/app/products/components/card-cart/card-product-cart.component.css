@@ -1,98 +1,76 @@
-.container {
-    margin-top: 30px;
-}
-  
-.row.justify-content-center {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; 
-}
-  
-.product-card {
-    border-radius: 15px;
-    overflow: hidden;
-    background-color: #fff;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 100%; 
-}
-  
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-}
-  
-.product-image {
-    border-radius: 5px;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
-  
-.card-body {
-    padding: 10px;
-}
-  
-.product-name {
-    font-size: 1.7rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 10px;
-}
-  
-.product-price {
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: #ff6b81; 
-}
-  
-.product-description {
-    font-size: 1rem;
-    color: #777;
-    margin-bottom: 20px;
-}
-  
-.btn {
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    border-radius: 40%;
-    background-color: #ee5992;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-  
-.quantity {
-    margin: 0 15px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
-}
-  
-  .btn:hover {
-    background-color: #eb7da7;
-}
-  
-.product-total {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #28a745; 
-}
-  
-.product-price span,
-.product-total span {
-  font-weight: 700;
-  color: #ff6b81; 
-}
-  
-strong{
-    color: black;
+.cart-item {
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-bottom: 1px solid #f4b6b6;
+padding: 15px 0;
 }
 
-@media (max-width: 767px) {
-    .product-card {
-      margin: 10px 0; 
-    }
+.cart-item:last-child {
+border-bottom: none;
 }
-  
+
+.item-image {
+width: 80px;
+height: 80px;
+object-fit: cover;
+border-radius: 10px;
+}
+
+.item-details {
+flex-grow: 1;
+margin-left: 20px;
+}
+
+.item-name {
+font-size: 1.2rem;
+color: #ff4d4d;
+font-weight: bold;
+}
+
+.item-description {
+font-size: 0.9rem;
+color: #666;
+margin: 5px 0;
+}
+
+.item-brand {
+font-size: 0.9rem;
+color: #777;
+margin: 5px 0;
+}
+
+.item-price {
+font-size: 1.2rem;
+color: #ff4d4d;
+font-weight: bold;
+}
+
+.quantity-controls {
+display: flex;
+align-items: center;
+justify-content: space-between;
+width: 120px;
+}
+
+.quantity-button {
+background-color: #ffb6b6;
+border: 1px solid #ff7c7c;
+color: #fff;
+padding: 5px 10px;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.quantity-button:disabled {
+background-color: #ccc;
+cursor: not-allowed;
+}
+
+.quantity {
+font-size: 1.2rem;
+color: #333;
+padding: 0 10px;
+}
+
+

@@ -8,10 +8,12 @@ import { CardCatalogComponent } from './components/card-catalog/card-catalog.com
 import { CardProductCartComponent } from './components/card-cart/card-product-cart.component';
 import { SearchBoxComponent } from './components/search-box/search-box.component';
 import { ProductSalePageComponent } from './pages/product-sale-page/product-sale-page.component';
-import { TableSaleComponent } from './components/table-sale/table-sale.component';
+import { TableSaleComponent } from './components/card-sale/table-sale.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SelectFilterComponent } from './components/select-filter/select-filter.component';
+import { FormRegisterComponent } from './components/form-register/form-register.component';
+import { ProductRegisterPageComponent } from './pages/product-register-page/product-register-page.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { SelectFilterComponent } from './components/select-filter/select-filter.
     SearchBoxComponent,
     ProductSalePageComponent,
     TableSaleComponent,
-    SelectFilterComponent, 
+    SelectFilterComponent,
+    FormRegisterComponent,
+    ProductRegisterPageComponent, 
   ],
   exports: [], 
   imports: [

@@ -1,5 +1,5 @@
 button{
-    background-color: #ee5992;
+    background-color: #ff7c7c;
     border: none;
     width: 25%;
     border-radius: 20px;
@@ -8,14 +8,4 @@ button{
 button:hover{
     background-color: #444;
     color: white;
-}
-
-input{
-    outline: none;
-    box-shadow: none; 
-}
-
-input:focus{
-    outline: none;
-    box-shadow: none; 
 }

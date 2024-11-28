@@ -1,7 +1,7 @@
 import { AlertService } from '../../shared/services/alert.service';
 import { Credencial } from '../interface/credencial.interface';
 import { environment as env } from '../../../environments/environment.development';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginResponse } from '../interface/response-login.interface';
 import { Observable, tap } from 'rxjs';

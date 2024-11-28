@@ -1,8 +1,31 @@
-form{
-  max-width: 500px; 
-  margin: auto
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
 }
 
+/* Formulario principal */
+form {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0a1c1; /* Rosa suave para el borde del formulario */
+}
+
+/* Título del formulario */
+h3 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Contenedor para campos de contraseña */
 .password-container {
   position: relative;
   display: flex;
@@ -10,14 +33,22 @@ form{
   width: 100%;
 }
 
+/* Estilos para campos de contraseña */
 .password-container input {
-  width: 100%; 
-  padding-right: 40px; 
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  color: #333;
+  transition: border-color 0.3s ease;
 }
 
+/* Icono de mostrar/ocultar contraseña */
 .password-toggle-btn {
   position: absolute;
-  right: 10px; 
+  right: 10px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -26,9 +57,71 @@ form{
 
 .password-toggle-btn i {
   font-size: 18px;
-  color: #aaa; 
+  color: #ff7c7c; /* Rosa suave */
 }
 
-.password-toggle-btn:hover i {
-  color: #333; 
+/* Estilo para campos de formulario */
+input[type="text"], input[type="email"], input[type="password"], select, textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+/* Cambios en los campos cuando están enfocados */
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, select:focus, textarea:focus {
+  border-color: #ff7c7c; /* Rosa suave en el enfoque */
+  outline: none;
+}
+
+/* Espaciado entre campos */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Botón de enviar */
+.buttonSave {
+  background-color: #ff7c7c; /* Rosa suave para el botón */
+  font-size: 15px;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Estilo del contenedor de los campos */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+/* Dividir en 2 columnas cuando es posible */
+.form-group.col-md-6 {
+  flex: 1 1 48%;
+  margin-right: 4%; /* Espacio entre las columnas */
+}
+
+.form-group.col-md-6:last-child {
+  margin-right: 0;
+}
+
+/* Estilo del contenedor en pantallas más pequeñas */
+@media (max-width: 576px) {
+  .form-group.col-md-6 {
+    flex: 1 1 100%;
+    margin-right: 0;
+  }
+
+  .container {
+    width: 100%;
+    padding: 15px;
+  }
 }

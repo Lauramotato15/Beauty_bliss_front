@@ -10,7 +10,11 @@ import { AuthService } from '../../../auth/services/auth.service';
   styleUrl: './product-catalog-page.component.css'
 })
 export class ProductCatalogPageComponent implements OnInit, OnDestroy{
+
   public subAll?:Subscription;
+  public subSearch?:Subscription; 
+  public subDrop?:Subscription; 
+
   public products:Product[] = []; 
   private shoppingCart:Product[] = [];
 
@@ -32,7 +36,7 @@ export class ProductCatalogPageComponent implements OnInit, OnDestroy{
   }
 
   searchbyName(value:string){
-    this.serviceProduct.findProducts(value).subscribe(product => {
+    this.subSearch = this.serviceProduct.findProducts(value).subscribe(product => {
       if(product.success){
         this.products.splice(0, this.products.length, product.data);
       }
@@ -43,20 +47,22 @@ export class ProductCatalogPageComponent implements OnInit, OnDestroy{
     })
   }
 
+  addCartSale(product:Product){
+    this.shoppingCart.push(product);
+    this.serviceAuth.saveLocalStorage<Array<Product>>('cart', this.shoppingCart);
+  }
+  
+  ngOnDestroy(): void {
+    this.subAll?.unsubscribe(); 
+    this.subSearch?.unsubscribe(); 
+    this.subDrop?.unsubscribe(); 
+  }
+
   deleteProduct(id:number){
     this.serviceProduct.deleteProducts(id).subscribe(resp => {
       if(resp){
         this.products = this.products.filter(product => product.id !== id);
       }
     });
-  }
-
-  addCartSale(product:Product){
-    this.shoppingCart.push(product);
-    this.serviceAuth.saveLocalStorage<Array<Product>>('cart', this.shoppingCart);
-  }
-
-  ngOnDestroy(): void {
-    this.subAll?.unsubscribe; 
   }
 }

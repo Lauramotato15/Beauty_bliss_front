@@ -1,45 +1,14 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12 mb-4">
-      <div class="card product-card shadow-sm">
-        <div class="row g-0">
-          
-          <!-- Imagen del producto -->
-          <div class="col w-100">
-            <img src="descarga.jpeg" class="img-fluid product-image" alt="Producto">
-          </div>
-          
-          <!-- Detalles del producto -->
-          <div class="col-md-8">
-            <div class="card-body text-center">
-              
-              <h5 class="card-title product-name">{{product.name}}</h5>
-              <p class="card-text product-price">
-                <strong>Precio: </strong> 
-                <span class="price">{{product.price}}</span>
-              </p>
-              <p class="card-text product-description">{{product.description}}</p>
-
-              <!-- Controles de cantidad -->
-              <div class="quantity-controls d-flex justify-content-center mb-2">
-                <button class="btn btn-decrement">
-                  <i class="fa-solid fa-minus"></i>
-                </button>
-                <span class="quantity">24</span>
-                <button class="btn btn-increment">
-                  <i class="fa-solid fa-plus"></i>
-                </button>
-              </div>
-      
-              <!-- Total -->
-              <p class="card-text product-total">
-                <strong>Total: </strong> 
-                <span class="total-price">123.000</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="cart-item">
+    <img src="https://via.placeholder.com/80" alt="Producto 2" class="item-image">
+    <div class="item-details">
+        <div class="item-name">Producto 2</div>
+        <div class="item-description">Descripción breve del producto 2</div>
+        <div class="item-brand">Marca: Marca B</div>
+        <div class="item-price">$29.99</div>
     </div>
-  </div>
+    <div class="quantity-controls">
+        <button class="quantity-button">-</button>
+        <span class="quantity">1</span>
+        <button class="quantity-button">+</button>
+    </div>
 </div>

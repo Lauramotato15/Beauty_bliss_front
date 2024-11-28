@@ -1,47 +1,55 @@
 <div class="container d-flex justify-content-center" style="min-height: 50vh;">
-    <form class="p-3 border rounded shadow-sm" [formGroup]="formLogin" (submit)="save()" style="max-width: 350px; width: 100%;">
+    <form class="p-3 rounded shadow-sm" [formGroup]="formLogin" (submit)="save()" style="max-width: 350px; width: 100%;">
         <h4 class="text-center mb-3">Iniciar sesión</h4>
 
         <div class="mb-3">
             <label for="InputEmail1" class="form-label">Correo Electrónico</label>
             <input 
-                class="form-control form-control-sm" 
+                class="form-control form-control-sm password-container" 
                 placeholder="Introduce tu correo" 
-                formControlName="email"
-                autocomplete="off"
-            >
+                formControlName="email" 
+                autocomplete="off">
             <span class="text-danger" *ngIf="fieldValidate('email')">
-                {{showMessageError('email')}}
+                {{ showMessageError('email') }}
             </span>
         </div>
 
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-            
+
             <div class="password-container">
                 <input 
-                [type]="passwordVisible ? 'text' : 'password'"
-                class="form-control form-control-sm" 
-                placeholder="Introduce tu contraseña" 
-                formControlName="password"
-                autocomplete="off"
-            >
-                <button type="button" class="password-toggle-btn" (click)="passwordVisible = !passwordVisible">
-                    <i class="fa" [class.fa-eye]="!passwordVisible" [class.fa-eye-slash]="passwordVisible"></i>
+                    [type]="passwordVisible ? 'text' : 'password'" 
+                    class="form-control form-control-sm" 
+                    placeholder="Introduce tu contraseña" 
+                    formControlName="password" 
+                    autocomplete="off">
+                
+                <button 
+                    type="button" 
+                    class="password-toggle-btn" 
+                    (click)="passwordVisible = !passwordVisible">
+                    <i 
+                        class="fa" 
+                        [class.fa-eye]="!passwordVisible" 
+                        [class.fa-eye-slash]="passwordVisible">
+                    </i>
                 </button>
             </div>
-            
+
             <span class="text-danger" *ngIf="fieldValidate('password')">
-                {{showMessageError('password')}}
+                {{ showMessageError('password') }}
             </span>
         </div>
 
         <div class="d-flex justify-content-center mb-3">
-            <button class="btn btn-primary w-100">Iniciar sesión</button>
+            <button class="buttonLogin">Iniciar sesión</button>
         </div>
 
         <div class="text-center">
-            <p class="mb-0"><a routerLink="/auth/register" class="text-muted">Crear cuenta</a></p>
+            <p class="mb-0">
+                <a routerLink="/auth/register" class="text-muted">Crear cuenta</a>
+            </p>
         </div>
     </form>
 </div>
