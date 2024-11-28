@@ -1,49 +1,32 @@
-<form [formGroup]="selectFilter" [ngClass]=" value ? 'd-flex justify-content-between' : ''">
-    <div class="mb-3 mx-1">
-        <label for="filter-type" class="form-label">Filtrar por:</label>
-        <select id="filter-type" class="form-select" formControlName="optionValue" (change)="SearchByFilter()">
-            <option value="">Seleccionar filtro</option>
-            <option value="category">Categoría</option>
-            <option value="brand">Marca</option>
-            <option value="price">Precio</option>
+<div class="row mb-2">
+    <div class="col-md-4">
+        <select id="categoria" name="categoria" class="form-select">
+            <option value="">Selecciona una categoría</option>
+            <option value="electronica">Electrónica</option>
+            <option value="ropa">Ropa</option>
+            <option value="hogar">Hogar</option>
+            <option value="deportes">Deportes</option>
         </select>
     </div>
-    
-    <!-- Filtros dependientes (ocultos por defecto) -->
-    
-    <!-- Filtro por Categoría -->
-    <div id="category-filter" class="mb-3" [ngStyle]="{ 'display': value ? 'block' : 'none'}">
-        <label for="category" class="form-label">Categoría:</label>
-        <select id="category" class="form-select">
-            <option value="">Seleccionar categoría</option>
-            <option value="electronics">Electrónica</option>
-            <option value="home-appliances">Electrodomésticos</option>
-            <option value="furniture">Muebles</option>
-        </select>
-    </div>
-    
-    <!-- Filtro por Marca -->
-    <div id="brand-filter" class="mb-3" style="display: none;">
-        <label for="brand" class="form-label">Marca:</label>
-        <select id="brand" class="form-select">
-            <option value="">Seleccionar marca</option>
+
+    <div class="col-md-4">
+        <select id="marca" name="marca" class="form-select">
+            <option value="">Selecciona una marca</option>
+            <option value="apple">Apple</option>
             <option value="samsung">Samsung</option>
-            <option value="lg">LG</option>
+            <option value="nike">Nike</option>
             <option value="sony">Sony</option>
-            <option value="ikea">Ikea</option>
         </select>
     </div>
-    
-    <!-- Filtro por Precio -->
-    <div id="price-filter" class="mb-3" style="display: none;">
-        <label for="price" class="form-label">Precio:</label>
-        <select id="price" class="form-select">
-            <option value="">Seleccionar precio</option>
-            <option value="100">$100</option>
-            <option value="150">$150</option>
-            <option value="200">$200</option>
-            <option value="250">$250</option>
-            <option value="300">$300</option>
+
+    <div class="col-md-4">
+        <select id="precio" name="precio" class="form-select">
+            <option value="">Selecciona un rango de precio</option>
+            <option value="0-50">Menos de $50</option>
+            <option value="50-100">$50 - $100</option>
+            <option value="100-200">$100 - $200</option>
+            <option value="200-500">$200 - $500</option>
+            <option value="500+">Más de $500</option>
         </select>
-    </div>    
-</form>
+    </div>
+</div>

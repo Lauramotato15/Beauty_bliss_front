@@ -1,21 +1,45 @@
-<div class="card mb-3 d-flex justify-content-center">
-    <div class="row g-0">
+<div class="container">
+  <div class="row">
+    <div class="col-12 mb-4">
+      <div class="card product-card shadow-sm">
+        <div class="row g-0">
+          
+          <!-- Imagen del producto -->
+          <div class="col w-100">
+            <img src="descarga.jpeg" class="img-fluid product-image" alt="Producto">
+          </div>
+          
+          <!-- Detalles del producto -->
+          <div class="col-md-8">
+            <div class="card-body text-center">
+              
+              <h5 class="card-title product-name">{{product.name}}</h5>
+              <p class="card-text product-price">
+                <strong>Precio: </strong> 
+                <span class="price">{{product.price}}</span>
+              </p>
+              <p class="card-text product-description">{{product.description}}</p>
 
-        <div class="col-md-4">
-            <img src="descarga.jpeg" class="img-fluid rounded-start" alt="ejemplo" style="width: 100%;">
-        </div>
-
-        <div class="col-md-8">
-            <div class="card-body">
-              <div class="card-body">
-                  <h5 class="card-title">{{product.name}}</h5>
-                  <p class="card-text"><strong>Precio:</strong>{{product.price}}/p>
-                  <p class="card-text">
-                    {{product.description}}
-                  </p>
+              <!-- Controles de cantidad -->
+              <div class="quantity-controls d-flex justify-content-center mb-2">
+                <button class="btn btn-decrement">
+                  <i class="fa-solid fa-minus"></i>
+                </button>
+                <span class="quantity">24</span>
+                <button class="btn btn-increment">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
               </div>
+      
+              <!-- Total -->
+              <p class="card-text product-total">
+                <strong>Total: </strong> 
+                <span class="total-price">123.000</span>
+              </p>
             </div>
+          </div>
         </div>
+      </div>
     </div>
   </div>
-  
+</div>
