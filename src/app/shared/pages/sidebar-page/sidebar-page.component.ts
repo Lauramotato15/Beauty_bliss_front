@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from '../../../users/interface/user.interface';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'shared-sidebar-page',
@@ -33,7 +34,7 @@ export class SidebarPageComponent implements OnDestroy, OnInit{
   }
 
   get fullImageUrl() {
-    return `http://localhost/uploads/${this.userLogueado.photo}`;
+    return `${environment.profilesUrl}${this.userLogueado.photo}`;
   }
 
   ngOnDestroy(): void {
