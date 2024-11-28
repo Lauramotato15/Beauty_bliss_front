@@ -1,16 +1,26 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../interface/product.interface';
+import { AuthService } from '../../../auth/services/auth.service';
 @Component({
   selector: 'card-catalog',
   templateUrl: './card-catalog.component.html',
   styleUrl: './card-catalog.component.css',
 })
 export class CardCatalogComponent{
+
+  constructor(){}; 
+
   @Input() public product!:Product;
 
-  @Output() deleteCard: EventEmitter<number> = new EventEmitter<number>();
+  @Output()public onDelete: EventEmitter<number> = new EventEmitter<number>();
+
+  @Output() public onAddCart: EventEmitter<Product> = new EventEmitter<Product>(); 
 
   deleteOne(id:number){
-    this.deleteCard.emit(id); 
+    this.onDelete.emit(id); 
+  }
+
+  addCartSale(product:Product){
+    this.onAddCart.emit(product);
   }
 }

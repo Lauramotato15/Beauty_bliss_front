@@ -1,16 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../interface/user.interface';
 import { environment as env } from '../../../environments/environment.development';
-import { UserUpdate } from '../interface/user-update.interface';
-import { ResponseLogin } from '../../auth/interface/responseLogin.interface';
+import { UserAction} from '../interface/user-update.interface';
+import { UserResponse } from '../interface/user-response.interface';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
-    constructor(private http: HttpClient) {}
+    constructor(private readonly http: HttpClient) {}
     
-    register(params:UserUpdate):Observable<ResponseLogin>{
+    register(params:UserAction):Observable<UserResponse>{
         const fData = new FormData();
         fData.append("name", params.name);
         fData.append("email", params.email);
@@ -19,23 +18,17 @@ export class UserService {
             fData.append("photo", params.photo);
         }
 
-        return this.http.post<ResponseLogin>(`${env.apiUrl}/user/register`, fData); 
+        return this.http.post<UserResponse>(`${env.apiUrl}/user/register`, fData); 
     }
 
-    update(params:UserUpdate, token:string):Observable<string>{
+    update(params:UserAction):Observable<UserResponse>{
         const fData = new FormData();
         fData.append("name", params.name);
-        fData.append("email", params.email);
         fData.append("password", params.password);
-
-        const headers = new HttpHeaders({
-            'Authorization': `Bearer ${token}`
-        });
-
         if(params.photo){
             fData.append("photo", params.photo);
         }
 
-        return this.http.post<string>(`${env.apiUrl}/user/update/me`,fData, {headers});
+        return this.http.post<UserResponse>(`${env.apiUrl}/user/update/me`,fData);
     }
 }

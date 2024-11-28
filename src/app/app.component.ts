@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth/services/auth.service';
+import { AuthModule } from './auth/auth.module';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +8,10 @@ import { AuthService } from './auth/services/auth.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent{
+  
+  constructor(private readonly serviceAuth: AuthService){}
 
   get isAuthenticated(){
-   return localStorage.getItem('auth'); 
+   return this.serviceAuth.user.id; 
   }
-
-  constructor(private serviceAuth: AuthService){}
-
 }

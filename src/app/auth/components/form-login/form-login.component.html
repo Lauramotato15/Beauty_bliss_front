@@ -10,21 +10,29 @@
                 formControlName="email"
                 autocomplete="off"
             >
-            <span class="text-danger" *ngIf="fieldValidator('email')">
-                {{messageError('email')}}
+            <span class="text-danger" *ngIf="fieldValidate('email')">
+                {{showMessageError('email')}}
             </span>
         </div>
 
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-            <input 
+            
+            <div class="password-container">
+                <input 
+                [type]="passwordVisible ? 'text' : 'password'"
                 class="form-control form-control-sm" 
                 placeholder="Introduce tu contraseña" 
                 formControlName="password"
                 autocomplete="off"
             >
-            <span class="text-danger" *ngIf="fieldValidator('password')">
-                {{messageError('password')}}
+                <button type="button" class="password-toggle-btn" (click)="passwordVisible = !passwordVisible">
+                    <i class="fa" [class.fa-eye]="!passwordVisible" [class.fa-eye-slash]="passwordVisible"></i>
+                </button>
+            </div>
+            
+            <span class="text-danger" *ngIf="fieldValidate('password')">
+                {{showMessageError('password')}}
             </span>
         </div>
 

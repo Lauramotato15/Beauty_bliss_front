@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { RegisterUserPageComponent } from './pages/register-user-page/register-user-page.component';
 import { InicioPageComponent } from '../shared/pages/inicio-page/inicio-page.component';
+import { NgModule } from '@angular/core';
+import { RegisterUserPageComponent } from './pages/register-user-page/register-user-page.component';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -13,6 +12,10 @@ const routes: Routes = [
     path: 'register',
     component: RegisterUserPageComponent,
   },
+  {
+    path: '**',
+    redirectTo: 'login'
+  }
 ];
 
 @NgModule({

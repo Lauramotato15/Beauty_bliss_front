@@ -1,52 +1,60 @@
-import { Injectable } from '@angular/core';
+import { AlertService } from '../../shared/services/alert.service';
 import { Credencial } from '../interface/credencial.interface';
-import { Observable, tap } from 'rxjs';
 import { environment as env } from '../../../environments/environment.development';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { userToken } from '../interface/user-token.interface';
-import { ResponseLogin } from '../interface/responseLogin.interface';
+import { Injectable } from '@angular/core';
+import { LoginResponse } from '../interface/response-login.interface';
+import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { User } from '../../users/interface/user.interface';
+import { UserToken } from '../interface/user-token.interface';
 
 @Injectable({providedIn: 'root'})
 export class AuthService{
     
-    constructor(private http: HttpClient, private route:Router) {}
+    constructor
+    (
+        private readonly http: HttpClient, 
+        private readonly route:Router, 
+        private readonly serviceAlert: AlertService
+    ) {}
+
+    get token(){
+        return this.loadLocalStorage<string>("token")
+    }
+
+    get user():User{
+        return this.loadLocalStorage<User>("user");
+    }
     
-    login(params:Credencial):Observable<ResponseLogin>{
-        return this.http.post<ResponseLogin>(`${env.apiUrl}/auth/login`,params)
+    login(params:Credencial):Observable<LoginResponse>{
+        return this.http.post<LoginResponse>(`${env.apiUrl}/auth/login`,params)
         .pipe(
-            tap(resp => resp.success === true ? this.saveUserLocalStorage(resp.data) : alert("Usuario o contraseña equivocado"))
+            tap(resp => resp.success ? this.saveLoginResponse(resp.data) 
+            : this.serviceAlert.showError("Usuario o contraseña incorrectos"))
         );
     }
 
     logout():Observable<boolean>{
-        const infoLogueado = localStorage.getItem('auth'); 
-
-        if(infoLogueado){
-            const token:userToken = JSON.parse(infoLogueado);
-            const headers = new HttpHeaders({
-                'Authorization': `Bearer ${token.token}`
-            });
-
-            return this.http.get<boolean>(`${env.apiUrl}/auth/logout`, {headers}); 
-        }
-        
-        return new Observable<boolean>(observer => {
-            observer.next(false);
-            observer.complete();
-        });
+        return this.http.get<boolean>(`${env.apiUrl}/auth/logout`);
     }
 
-    saveUserLocalStorage(infoToken:userToken){
-        localStorage.setItem('auth', JSON.stringify(infoToken)); 
-        this.route.navigate(['/sidebar']);
+    saveLoginResponse(response: UserToken){
+        this.saveLocalStorage("token", response.token);
+        this.saveLocalStorage("user", response.user);
+        this.serviceAlert.showSuccess('Inicio de sesión exitoso');
+        this.route.navigate(['product/catalog']);
+    }
+    
+    saveLocalStorage<T>(key:string, data:T){
+        localStorage.setItem(key, JSON.stringify(data)); 
     }   
 
-    loadLocalStorage(key:string):userToken{
-        const storedAuth = localStorage.getItem('auth');
+    loadLocalStorage<T>(key:string):T{
+        const storedAuth = localStorage.getItem(key);
         if(storedAuth){
-            return JSON.parse(storedAuth) as userToken;
+            return JSON.parse(storedAuth) as T;
         }
-        return {} as userToken
+        return {} as T;
     }
 }

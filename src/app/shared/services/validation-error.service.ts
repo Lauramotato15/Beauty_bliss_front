@@ -4,10 +4,8 @@ import { AbstractControl, FormGroup, ValidationErrors } from '@angular/forms';
 @Injectable({providedIn: 'root'})
 export class ValidationErrorService{
   
-  public emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
+  public emailPattern: string = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$";
 
-  constructor() { }
-    
   forFieldValidator(field:string, formLogin:FormGroup):boolean { 
     if(formLogin.controls[field].errors && formLogin.controls[field].touched){
       return true; 
@@ -15,8 +13,8 @@ export class ValidationErrorService{
     return false; 
   }
 
-  messageError(field:string, formLogin:FormGroup):string | undefined{
-    if(!formLogin.controls[field]) return; 
+  messageError(field:string, formLogin:FormGroup):string{
+    if(!formLogin.controls[field]) return ''; 
   
     const errors = formLogin.controls[field].errors || {}; 
 
@@ -33,20 +31,19 @@ export class ValidationErrorService{
 
       }
     }
-    return; 
+    return ''; 
   }
 
-  public isFieldOneEqualFieldTwo(pass1: string, pass2: string) {
+  public isFieldOneEqualFieldTwo(fieldOne: string, fieldTwo: string) {
     return (formGroup: AbstractControl): ValidationErrors | null => {
-      const fieldValue1 = formGroup.get(pass1)?.value;
-      const fieldValue2 = formGroup.get(pass2)?.value;
+      const fieldValueOne = formGroup.get(fieldOne)?.value;
+      const fieldValueTwo = formGroup.get(fieldTwo)?.value;
 
-      if (fieldValue1 !== fieldValue2) {
+      if (fieldValueOne !== fieldValueTwo) {
         return { notEqual: true }; 
       }
   
       return null;
     };
   }
-  
 }

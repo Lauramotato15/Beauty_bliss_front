@@ -1,8 +1,3 @@
-form{
-  max-width: 500px; 
-  margin: auto
-}
-
 .password-container {
   position: relative;
   display: flex;
@@ -32,3 +27,4 @@ form{
 .password-toggle-btn:hover i {
   color: #333; 
 }
+  

@@ -3,35 +3,37 @@ import { Component, OnDestroy } from '@angular/core';
 import { Credencial } from '../../interface/credencial.interface';
 import { FormBuilder, FormGroup, Validators as val} from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { ValidationErrorService } from '../../../shared/services/validation.error.service';
+import { ValidationErrorService } from '../../../shared/services/validation-error.service';
 
 @Component({
   selector: 'auth-form-login',
   templateUrl: './form-login.component.html',
+  styleUrl: './form-login.component.css',
 })
 export class FormLoginComponent  implements OnDestroy{
 
   public subs:Subscription = new Subscription(); 
   public formLogin!:FormGroup; 
+  public passwordVisible: boolean = false;
 
   constructor(
-    private fb: FormBuilder, 
-    private validatorService:ValidationErrorService,
-    private serviceLogin: AuthService,
+    private readonly fb: FormBuilder, 
+    private readonly validatorService:ValidationErrorService,
+    private readonly serviceLogin: AuthService,
   ){}
 
   ngOnInit(): void {
     this.formLogin = this.fb.group({
-      email: ['', [val.required]],
+      email: ['', [val.required, val.pattern(this.validatorService.emailPattern)]],
       password: ['',[val.required]],
     });
   }
 
-  fieldValidator(field:string):boolean | null{ 
+  fieldValidate(field:string):boolean | null{ 
     return this.validatorService.forFieldValidator(field, this.formLogin);
   }
 
-  messageError(field:string):string | undefined{
+  showMessageError(field:string):string | undefined{
     return this.validatorService.messageError(field,this.formLogin); 
   }
 

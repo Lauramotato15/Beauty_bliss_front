@@ -3,52 +3,43 @@
 
     <div class="mb-3">
         <label for="Name" class="form-label">Nombre</label>
-        <input 
-            formControlName="name"
-            autocomplete="off"
-            type="text" 
-            class="form-control" 
-            placeholder="Nombre" 
-        >
-        <span class="text-danger" *ngIf="fieldValidator('name')">
-            {{messageError('name')}}
+        <input formControlName="name" autocomplete="off" type="text" class="form-control" placeholder="Nombre">
+        <span class="text-danger" *ngIf="fieldValidate('name')">
+            {{showMessageError('name')}}
         </span>
     </div>
 
     <div class="mb-3">
         <label for="Email" class="form-label">Correo Electrónico</label>
-        <input 
-            formControlName="email"
-            autocomplete="off"
-            class="form-control"
-            placeholder="Correo electrónico" 
-        >
-        <span class="text-danger" *ngIf="fieldValidator('email')">
-            {{messageError('email')}}
+        <input formControlName="email" autocomplete="off" class="form-control" placeholder="Correo electrónico">
+        <span class="text-danger" *ngIf="fieldValidate('email')">
+            {{showMessageError('email')}}
         </span>
     </div>
 
     <div class="mb-3">
         <label for="Password" class="form-label">Contraseña</label>
-        <input 
-            formControlName="password"
-            autocomplete="off"
-            class="form-control" 
-            placeholder="Contraseña" 
-        >
-        <span class="text-danger" *ngIf="fieldValidator('password')">
-            {{messageError('password')}}
+        <div class="password-container">
+            <input [type]="passwordVisible ? 'text' : 'password'" formControlName="password" autocomplete="off" class="form-control"
+                placeholder="Contraseña">
+            <button type="button" class="password-toggle-btn" (click)="passwordVisible = !passwordVisible">
+                <i class="fa" [class.fa-eye]="!passwordVisible" [class.fa-eye-slash]="passwordVisible"></i>
+            </button>
+        </div>
+        
+        <span class="text-danger" *ngIf="fieldValidate('password')">
+            {{showMessageError('password')}}
         </span>
     </div>
 
     <div class="mb-3">
-        <label for="ConfirmPassword" class="form-label">Confirmar Contraseña</label>
-        <input 
-            formControlName="confirmPassword"
-            autocomplete="off"
-            class="form-control" 
-            placeholder="Confirma tu contraseña" 
-        >
+        <div class="password-container">
+            <input [type]="confirmVisible ? 'text' : 'password'" formControlName="confirmPassword" autocomplete="off"
+                class="form-control" placeholder="Confirma tu contraseña">
+            <button type="button" class="password-toggle-btn" (click)="confirmVisible = !confirmVisible">
+                <i class="fa" [class.fa-eye]="!confirmVisible" [class.fa-eye-slash]="confirmVisible"></i>
+            </button>
+        </div>
         <span class="text-danger" *ngIf="formAction.hasError('notEqual') && formAction.get('confirmPassword')?.touched">
             <small class="text-danger">*Las contraseñas no coinciden.</small>
         </span>
@@ -56,20 +47,15 @@
 
     <div class="mb-3">
         <label for="Photo" class="form-label">Subir Foto</label>
-        <input 
-            #filePicker (change)="onImagePicked($event)"
-            formControlName="photo"
-            type="file" 
-            class="form-control" 
-            id="Photo"
-        >
+        <input #filePicker (change)="onImagePicked($event)" formControlName="photo" type="file" class="form-control"
+            id="Photo">
     </div>
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <button class="btn btn-primary w-100">Guardar</button>
     </div>
 
-    <div class="text-center" *ngIf="!infoTok">
+    <div class="text-center" *ngIf="!user">
         <p class="mb-0">¿Ya tienes una cuenta? <a routerLink="/auth/login" class="text-muted">Inicia sesión</a></p>
     </div>
 </form>

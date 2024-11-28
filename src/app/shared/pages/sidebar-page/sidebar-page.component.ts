@@ -1,8 +1,8 @@
+import { AuthService } from '../../../auth/services/auth.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../auth/services/auth.service';
 import { Subscription } from 'rxjs';
-import { userToken } from '../../../auth/interface/user-token.interface';
+import { User } from '../../../users/interface/user.interface';
 
 @Component({
   selector: 'shared-sidebar-page',
@@ -12,19 +12,28 @@ import { userToken } from '../../../auth/interface/user-token.interface';
 export class SidebarPageComponent implements OnDestroy, OnInit{
 
   public sub?:Subscription; 
-  public userLogueado!:userToken;
+  public userLogueado!:User;
 
-  constructor(private route:Router, private serviceAuth: AuthService){}
+  constructor
+  (
+    private route:Router, 
+    private serviceAuth: AuthService, 
+  ){}
+
+  ngOnInit(): void {
+    this.userLogueado = this.serviceAuth.user;
+  }
 
   logout(event: Event){
-    this.sub = this.serviceAuth.logout().subscribe(resp => console.log(resp)); 
+    this.sub = this.serviceAuth.logout().subscribe();
     event.stopPropagation();
-    localStorage.removeItem('auth');
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.route.navigate(['/auth/login']);
   }
 
-  ngOnInit(): void {
-    this.userLogueado = this.serviceAuth.loadLocalStorage('auth');
+  get fullImageUrl() {
+    return `http://localhost/uploads/${this.userLogueado.photo}`;
   }
 
   ngOnDestroy(): void {

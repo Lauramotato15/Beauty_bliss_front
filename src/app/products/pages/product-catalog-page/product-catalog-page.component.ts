@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Product } from '../../interface/product.interface';
 import { ProductService } from '../../services/product.service';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'product-catalog-page',
@@ -11,9 +12,12 @@ import { ProductService } from '../../services/product.service';
 export class ProductCatalogPageComponent implements OnInit, OnDestroy{
   public subAll?:Subscription;
   public products:Product[] = []; 
+  private shoppingCart:Product[] = [];
 
-
-  constructor(private serviceProduct: ProductService){}
+  constructor(
+    private serviceProduct: ProductService,
+    private serviceAuth:AuthService,
+  ){}
 
   ngOnInit(): void {
     this.allProducts();
@@ -27,7 +31,7 @@ export class ProductCatalogPageComponent implements OnInit, OnDestroy{
     })
   }
 
-  findbyName(value:string){
+  searchbyName(value:string){
     this.serviceProduct.findProducts(value).subscribe(product => {
       if(product.success){
         this.products.splice(0, this.products.length, product.data);
@@ -39,12 +43,17 @@ export class ProductCatalogPageComponent implements OnInit, OnDestroy{
     })
   }
 
-  delete(id:number){
+  deleteProduct(id:number){
     this.serviceProduct.deleteProducts(id).subscribe(resp => {
       if(resp){
         this.products = this.products.filter(product => product.id !== id);
       }
     });
+  }
+
+  addCartSale(product:Product){
+    this.shoppingCart.push(product);
+    this.serviceAuth.saveLocalStorage<Array<Product>>('cart', this.shoppingCart);
   }
 
   ngOnDestroy(): void {
