@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../interface/product.interface';
-import { AuthService } from '../../../auth/services/auth.service';
 @Component({
   selector: 'card-catalog',
   templateUrl: './card-catalog.component.html',

@@ -1,41 +1,35 @@
-/* Estilos generales */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4; /* Fondo suave para todo */
-  }
-  
   .accordion-item {
-    background-color: #fff; /* Fondo blanco para las tarjetas del acordeón */
-    border: 1px solid #ddd; /* Borde suave y gris claro */
-    border-radius: 10px; /* Bordes redondeados */
-    margin-bottom: 15px; /* Espacio entre los items */
+    background-color: #fff; 
+    border: 1px solid #ddd;
+    border-radius: 10px; 
+    margin-bottom: 15px;
   }
   
   .accordion-header {
-    background-color: #f4b6b6; /* Rosa suave para el encabezado */
+    background-color: #f4b6b6; 
     padding: 15px 20px;
     border-radius: 10px 10px 0 0;
-    color: #333; /* Gris oscuro para el texto del encabezado */
+    color: #333; 
   }
   
   .accordion-header img {
-    border-radius: 10px; /* Bordes redondeados para la imagen */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave alrededor de la imagen */
+    border-radius: 10px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   }
   
   .accordion-body {
-    background-color: #f9f9f9; /* Fondo ligeramente gris para el cuerpo */
+    background-color: #f9f9f9; 
     padding: 20px;
-    border-top: 1px solid #ddd; /* Borde superior para separar */
-    color: #333; /* Gris oscuro para el texto */
+    border-top: 1px solid #ddd; 
+    color: #333; 
   }
   
   .accordion-body .card-text {
-    color: #666; /* Gris más claro para el texto del cuerpo */
+    color: #666; 
   }
   
   .accordion-body .card-text strong {
-    color: #444; /* Gris más oscuro para los títulos */
+    color: #444; 
   }
   
   .accordion-item .d-flex {
@@ -43,47 +37,45 @@ body {
   }
   
   .accordion-item .d-flex h4 {
-    color: #333; /* Gris oscuro para el nombre del producto */
+    color: #333;
   }
   
   .accordion-item .d-flex i {
-    color: #007bff; /* Azul brillante para el ícono de la vista */
+    color: #007bff;
     cursor: pointer;
     transition: color 0.3s ease;
   }
   
   .accordion-item .d-flex i:hover {
-    color: #0056b3; /* Azul más oscuro al pasar el cursor */
+    color: #0056b3; 
   }
   
-  /* Botones */
   .btn-outline-danger {
-    border-color: #e0786c; /* Rojo sutil para el botón de eliminar */
+    border-color: #e0786c;
     color: #e0786c;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
   
   .btn-outline-danger:hover {
-    background-color: #e0786c; /* Fondo rojo al hacer hover */
-    color: #fff; /* Blanco para el texto al hacer hover */
+    background-color: #e0786c; 
+    color: #fff;
   }
   
   .btn-outline-success {
-    border-color: #84d196; /* Verde sutil para el botón de agregar al carrito */
+    border-color: #84d196;
     color: #84d196;;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
   
   .btn-outline-success:hover {
-    background-color: #84d196;; /* Fondo verde al hacer hover */
-    color: #fff; /* Blanco para el texto al hacer hover */
+    background-color: #84d196;
+    color: #fff;
   }
   
   .btn i {
-    font-size: 1.2rem; /* Tamaño de ícono adecuado */
+    font-size: 1.2rem;
   }
-  
-  /* Responsive */
+
   @media (max-width: 768px) {
     .accordion-header {
       padding: 10px;

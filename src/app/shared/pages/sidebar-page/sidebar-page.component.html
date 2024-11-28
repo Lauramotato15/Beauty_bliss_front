@@ -3,7 +3,7 @@
     <div class="sidebar">
         <div class="headerUser mt-3">
             <h3>{{userLogueado.name}}</h3>
-            <img [src]="fullImageUrl" class="imageUser" alt="ejemplo">
+            <img [src]="fullImageUrl" class="imageUser" [alt]="userLogueado.name">
         </div>
         <a routerLink="user/profile">Perfil</a>
         <a routerLink="product/register">Agregar producto</a>

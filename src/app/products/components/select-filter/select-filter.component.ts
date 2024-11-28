@@ -10,7 +10,6 @@ import { CategoryService } from '../../../categories/services/category.service';
 export class SelectFilterComponent implements OnInit{
 
   public selectFilter!:FormGroup;
-  public value:boolean = false; 
  
   constructor(private serviceCategory:CategoryService, private fb:FormBuilder){}
 
@@ -25,7 +24,6 @@ export class SelectFilterComponent implements OnInit{
       console.log(resp); 
       console.log("divicion"); 
       console.log(this.selectFilter.value)
-      this.value = true; 
     })
   }
 }

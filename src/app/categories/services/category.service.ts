@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { UserToken } from '../../auth/interface/user-token.interface';
 import { AuthService } from '../../auth/services/auth.service';
 import { environment as env} from '../../../environments/environment.development';
-import { ApiResponseOne } from '../../products/interface/api-response.interface';
+import { ApiResponseOne } from '../../products/interface/product-response.interface';
 
 @Injectable({providedIn: 'root'})
 export class CategoryService {

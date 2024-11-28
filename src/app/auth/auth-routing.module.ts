@@ -1,7 +1,7 @@
-import { InicioPageComponent } from '../shared/pages/inicio-page/inicio-page.component';
-import { NgModule } from '@angular/core';
-import { RegisterUserPageComponent } from './pages/register-user-page/register-user-page.component';
 import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { InicioPageComponent } from '../shared/pages/inicio-page/inicio-page.component';
+import { RegisterUserPageComponent } from './pages/register-user-page/register-user-page.component';
 
 const routes: Routes = [
   {

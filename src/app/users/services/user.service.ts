@@ -12,8 +12,8 @@ export class UserService {
     register(params:UserAction):Observable<UserResponse>{
         const fData = new FormData();
         fData.append("name", params.name);
-        fData.append("email", params.email);
         fData.append("password", params.password);
+        fData.append("email", params.email);
         if(params.photo){
             fData.append("photo", params.photo);
         }
@@ -28,7 +28,6 @@ export class UserService {
         if(params.photo){
             fData.append("photo", params.photo);
         }
-
         return this.http.post<UserResponse>(`${env.apiUrl}/user/update/me`,fData);
     }
 }

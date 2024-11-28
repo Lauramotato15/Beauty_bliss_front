@@ -8,6 +8,7 @@ import { SharedModule } from "./shared/shared.module";
 import { ProductModule } from './products/product.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { ExceptionInterceptor } from './interceptors/exception.interceptor';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,11 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     { 
       provide: HTTP_INTERCEPTORS, 
       useClass: TokenInterceptor, 
+      multi: true
+    },
+    { 
+      provide: HTTP_INTERCEPTORS, 
+      useClass: ExceptionInterceptor, 
       multi: true
     },
   ],

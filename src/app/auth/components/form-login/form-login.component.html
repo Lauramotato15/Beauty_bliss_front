@@ -1,5 +1,5 @@
-<div class="container d-flex justify-content-center" style="min-height: 50vh;">
-    <form class="p-3 rounded shadow-sm" [formGroup]="formLogin" (submit)="save()" style="max-width: 350px; width: 100%;">
+<div class="container d-flex justify-content-center">
+    <form class="p-3 rounded shadow-sm" [formGroup]="formLogin" (submit)="save()">
         <h4 class="text-center mb-3">Iniciar sesión</h4>
 
         <div class="mb-3">
@@ -8,7 +8,8 @@
                 class="form-control form-control-sm password-container" 
                 placeholder="Introduce tu correo" 
                 formControlName="email" 
-                autocomplete="off">
+                autocomplete="off"
+            >
             <span class="text-danger" *ngIf="fieldValidate('email')">
                 {{ showMessageError('email') }}
             </span>

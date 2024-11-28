@@ -52,17 +52,17 @@ export class ProductCatalogPageComponent implements OnInit, OnDestroy{
     this.serviceAuth.saveLocalStorage<Array<Product>>('cart', this.shoppingCart);
   }
   
-  ngOnDestroy(): void {
-    this.subAll?.unsubscribe(); 
-    this.subSearch?.unsubscribe(); 
-    this.subDrop?.unsubscribe(); 
-  }
-
   deleteProduct(id:number){
-    this.serviceProduct.deleteProducts(id).subscribe(resp => {
+    this.subDrop = this.serviceProduct.deleteProducts(id).subscribe(resp => {
       if(resp){
         this.products = this.products.filter(product => product.id !== id);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subAll?.unsubscribe(); 
+    this.subSearch?.unsubscribe(); 
+    this.subDrop?.unsubscribe(); 
   }
 }

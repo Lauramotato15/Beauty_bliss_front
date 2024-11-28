@@ -15,6 +15,5 @@ export class ProductCartPageComponent implements OnInit{
 
   ngOnInit(): void {
     this.products = this.serviceAuth.loadLocalStorage<Array<Product>>('cart');
-    console.log(this.products); 
   }
 }

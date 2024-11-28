@@ -1,5 +1,4 @@
 import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators as val} from '@angular/forms';
 
 @Component({
   selector: 'app-search-box',

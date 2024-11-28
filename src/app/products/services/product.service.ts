@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../../environments/environment.development';
-import { ApiResponseAll, ApiResponseOne } from '../interface/api-response.interface';
+import { ApiResponseAll, ApiResponseOne } from '../interface/product-response.interface';
 
 @Injectable({providedIn: 'root'})
 export class ProductService {
@@ -18,7 +18,7 @@ export class ProductService {
 
         return this.http.get<ApiResponseOne>(url);
     }
-
+    
     deleteProducts(id:number):Observable<Boolean>{
         const url = `${env.apiUrl}/product/${id}`; 
 

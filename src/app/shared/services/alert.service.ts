@@ -22,7 +22,6 @@ export class AlertService {
     Swal.fire({
       icon: 'error',
       title: message,
-      text: 'Por favor, verifique sus credenciales e intente de nuevo.',
       confirmButtonText: 'Aceptar',
     });
   }
