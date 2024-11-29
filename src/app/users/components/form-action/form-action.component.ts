@@ -6,6 +6,7 @@ import { UserService } from '../../services/user.service';
 import { User } from '../../interface/user.interface';
 import { AlertService } from '../../../shared/services/alert.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'users-form-action',
@@ -32,6 +33,7 @@ export class FormActionComponent implements OnDestroy{
     private readonly validatorService: ValidationErrorService,
     private readonly userService: UserService,
     private readonly serviceAlert: AlertService,
+    private readonly serviceAuth: AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -79,9 +81,11 @@ export class FormActionComponent implements OnDestroy{
       .subscribe(resp => {
         this.filePicker.nativeElement.value = '';
         if (!resp.success) {
-          this.serviceAlert.showError("un error, intente nuevamente");
+          console.log(resp);
+          this.serviceAlert.showError("Ocurrió un error, intentalo nuevamente.");
           return;
         }
+        this.serviceAuth.saveLocalStorage('user', resp.data);
         this.serviceAlert.showSuccess("Información guardada con éxito");
       });
     }
@@ -91,7 +95,7 @@ export class FormActionComponent implements OnDestroy{
       .subscribe(resp => {
         this.formAction.reset();
         if (!resp.success) {
-          this.serviceAlert.showError("Ocurrio un error, intentalo nuevamente.");
+          this.serviceAlert.showError("Ocurrió un error, intentalo nuevamente.");
           return;
         }
         this.serviceAlert.showSuccess("Información registrada con exito.");

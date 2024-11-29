@@ -10,8 +10,6 @@ export class ExceptionInterceptor implements HttpInterceptor {
 
   intercept(pet: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = next.handle(pet); 
-    console.log("sy")
-    console.log(token); 
     return next.handle(pet); 
   }
 }

@@ -24,7 +24,11 @@ export class UserService {
     update(params:UserAction):Observable<UserResponse>{
         const fData = new FormData();
         fData.append("name", params.name);
-        fData.append("password", params.password);
+        
+        if(params.password){
+            fData.append("password", params.password);
+        }
+
         if(params.photo){
             fData.append("photo", params.photo);
         }
