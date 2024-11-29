@@ -2,19 +2,18 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../../environments/environment.development';
-import { ApiResponseAll, ApiResponseOne } from '../interface/product-response.interface';
 import { Product } from '../interface/product.interface';
-
+import { ApiResponse } from '../../shared/interfaces/api-response.interface';
 @Injectable({providedIn: 'root'})
 export class ProductService {
 
     constructor( private readonly http:HttpClient ) {}
     
-    getAllProducts():Observable<ApiResponseAll>{
-        return this.http.get<ApiResponseAll>(`${env.apiUrl}/product`);
+    getAllProducts():Observable<ApiResponse <Array <Product> >>{
+        return this.http.get<ApiResponse <Array <Product> >>(`${env.apiUrl}/product`);
     }
 
-    createProduct(params:Product):Observable<ApiResponseOne>{
+    createProduct(params:Product):Observable<ApiResponse<Product >>{
         const fData = new FormData();
         fData.append("name", params.name);
         fData.append("price", params.price);
@@ -26,13 +25,13 @@ export class ProductService {
             fData.append("photo", params.photo);
         }
 
-        return this.http.post<ApiResponseOne>(`${env.apiUrl}/product`, fData);
+        return this.http.post<ApiResponse<Product >>(`${env.apiUrl}/product`, fData);
     }
 
-    findProducts(productName:string):Observable<ApiResponseOne>{
+    findProducts(productName:string):Observable<ApiResponse < Array<Product> >>{
         const url = `${env.apiUrl}/product/find-by-name/${productName}`;
 
-        return this.http.get<ApiResponseOne>(url);
+        return this.http.get<ApiResponse < Array<Product> >>(url);
     }
     
     deleteProducts(id:number):Observable<Boolean>{

@@ -1,0 +1,15 @@
+.no-products-message {
+    background-color: #ff7c7c;  
+    color: #ffffff;
+    text-align: center; 
+    padding: 20px;  
+    border-radius: 8px; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 30px auto; 
+    font-family: 'Arial', sans-serif;
+}
+
+.no-products-message h1 {
+    font-size: 24px; 
+    font-weight: bold; 
+}

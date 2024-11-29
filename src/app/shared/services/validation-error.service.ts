@@ -29,6 +29,8 @@ export class ValidationErrorService{
         case 'pattern': 
           return ` El ${field} debe ser un correo válido`
 
+        case 'min': 
+          return ` El precio debe ser un valor válido`
       }
     }
     return ''; 

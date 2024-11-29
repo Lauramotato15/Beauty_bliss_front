@@ -1,16 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserToken } from '../../auth/interface/user-token.interface';
 import { AuthService } from '../../auth/services/auth.service';
 import { environment as env} from '../../../environments/environment.development';
-import { ApiResponseOne } from '../../products/interface/product-response.interface';
+import { Observable } from 'rxjs';
+import { ApiResponse } from '../../shared/interfaces/api-response.interface';
+import { Product } from '../../products/interface/product.interface';
 
 @Injectable({providedIn: 'root'})
 export class CategoryService {
 
     constructor(private http:HttpClient, private serviceAuth:AuthService) { }
 
-    getAll(){
+    getAll():Observable<ApiResponse < Array<Product> >>{
 
         const headers = new HttpHeaders({
             'Authorization': `Bearer ${this.serviceAuth.token}`
@@ -18,6 +19,6 @@ export class CategoryService {
 
         const url = `${env.apiUrl}/category/`;
 
-        return this.http.get<ApiResponseOne>(url, {headers});
+        return this.http.get<ApiResponse < Array<Product> >>(url, {headers});
     }
 }

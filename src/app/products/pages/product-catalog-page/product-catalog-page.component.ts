@@ -38,7 +38,7 @@ export class ProductCatalogPageComponent implements OnInit, OnDestroy{
   searchbyName(value:string){
     this.subSearch = this.serviceProduct.findProducts(value).subscribe(product => {
       if(product.success){
-        this.products.splice(0, this.products.length, product.data);
+        this.products.splice(0, this.products.length, ...product.data);
       }
       
       if(!product.success){

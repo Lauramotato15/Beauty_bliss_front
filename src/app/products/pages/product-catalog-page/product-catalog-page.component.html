@@ -3,9 +3,14 @@
     <div class="d-flex justify-content-end mb-3">
         <products-select-filter></products-select-filter>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="products.length; else mensaje">
         <div class="col-lg-3 mb-3" *ngFor="let product of products">
             <card-catalog [product]="product" (onDelete)="deleteProduct($event)" (onAddCart)="addCartSale($event)"></card-catalog>
         </div>
     </div>
+    <ng-template #mensaje>
+        <div class="no-products-message">
+            <h1>No hay productos</h1>
+        </div>
+    </ng-template>    
 </div>

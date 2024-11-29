@@ -4,4 +4,4 @@ export interface UserAction{
     email: string; 
     password: string; 
     photo: File;
-}
+} 
