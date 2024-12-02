@@ -57,4 +57,10 @@ export class AuthService{
         }
         return {} as T;
     }
+
+    clearStorage(){
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        this.route.navigate(['/auth/login']);
+    }
 }

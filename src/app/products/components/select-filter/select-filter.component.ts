@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators as val} from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators as val} from '@angular/forms';
 import { CategoryService } from '../../../categories/services/category.service';
+import { Category } from '../../../categories/interface/category.interface';
 
 @Component({
   selector: 'products-select-filter',
@@ -8,22 +9,21 @@ import { CategoryService } from '../../../categories/services/category.service';
   styleUrl: './select-filter.component.css'
 })
 export class SelectFilterComponent implements OnInit{
-
-  public selectFilter!:FormGroup;
+  public categories!:Category[];
  
+  @Input() public formControl!:FormControl;
+
   constructor(private serviceCategory:CategoryService, private fb:FormBuilder){}
 
   ngOnInit(): void {
-    this.selectFilter = this.fb.group({
-      optionValue: ['',],
-    });
   }
 
   SearchByFilter(){
     this.serviceCategory.getAll().subscribe(resp => {
-      console.log(resp); 
-      console.log("divicion"); 
-      console.log(this.selectFilter.value)
+      if(resp.success){
+        this.categories = resp.data; 
+        return; 
+      }
     })
   }
 }

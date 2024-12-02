@@ -3,13 +3,14 @@ import { Injectable, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment as env } from '../../../environments/environment.development';
 import { UserAction} from '../interface/user-update.interface';
-import { UserResponse } from '../interface/user-response.interface';
+import { ApiResponse } from '../../shared/interfaces/api-response.interface';
+import { User } from '../interface/user.interface';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
     constructor(private readonly http: HttpClient) {}
     
-    register(params:UserAction):Observable<UserResponse>{
+    register(params:UserAction):Observable<ApiResponse<User>>{
         const fData = new FormData();
         fData.append("name", params.name);
         fData.append("password", params.password);
@@ -18,10 +19,10 @@ export class UserService {
             fData.append("photo", params.photo);
         }
 
-        return this.http.post<UserResponse>(`${env.apiUrl}/user/register`, fData); 
+        return this.http.post<ApiResponse<User>>(`${env.apiUrl}/user/register`, fData); 
     }
 
-    update(params:UserAction):Observable<UserResponse>{
+    update(params:UserAction):Observable<ApiResponse<User>>{
         const fData = new FormData();
         fData.append("name", params.name);
         
@@ -32,6 +33,6 @@ export class UserService {
         if(params.photo){
             fData.append("photo", params.photo);
         }
-        return this.http.post<UserResponse>(`${env.apiUrl}/user/update/me`,fData);
+        return this.http.post<ApiResponse<User>>(`${env.apiUrl}/user/update/me`,fData);
     }
 }

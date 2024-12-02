@@ -1,11 +1,4 @@
-<div class="row mb-2">
-    <div class="col-md-12">
-        <select id="categoria" name="categoria" class="form-select">
-            <option value="">Categoría</option>
-            <option value="electronica">Electrónica</option>
-            <option value="ropa">Ropa</option>
-            <option value="hogar">Hogar</option>
-            <option value="deportes">Deportes</option>
-        </select>
-    </div>
-</div>
+<select  id="categoria" [formControl]="formControl" class="form-select">
+    <option value="" disabled selected>Categoría</option>
+    <option *ngFor="let category of categories;" [value]="category.id">{{category.name}}</option>
+</select>

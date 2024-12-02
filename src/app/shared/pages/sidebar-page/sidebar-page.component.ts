@@ -28,9 +28,6 @@ export class SidebarPageComponent implements OnDestroy, OnInit{
   logout(event: Event){
     this.sub = this.serviceAuth.logout().subscribe();
     event.stopPropagation();
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    this.route.navigate(['/auth/login']);
   }
 
   get fullImageUrl() {

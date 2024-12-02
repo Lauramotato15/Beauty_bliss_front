@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { ValidationErrorService } from '../../../shared/services/validation-error.service';
 import { Product } from '../../interface/product.interface';
-import { FormBuilder, FormGroup, Validators as val } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators as val } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AlertService } from '../../../shared/services/alert.service';
 import { CategoryService } from '../../../categories/services/category.service';
@@ -34,6 +34,7 @@ export class FormRegisterComponent implements OnDestroy{
     this.formRegister = this.fb.group({
       name: ['', [val.required]],
       price: ['', [val.required, val.min(1)]], 
+      quantity: ['', [val.required, val.min(1)]], 
       brand: ['', [val.required]], 
       description: ['', [val.required]],
       photo: ['', [val.required]],
@@ -79,5 +80,9 @@ export class FormRegisterComponent implements OnDestroy{
 
   ngOnDestroy(): void {
     this.subGetCategories?.unsubscribe(); 
+  }
+
+  get categoryFormControl(){
+    return this.formRegister.controls['category'] as FormControl;
   }
 }

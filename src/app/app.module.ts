@@ -9,6 +9,7 @@ import { ProductModule } from './products/product.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { ExceptionInterceptor } from './interceptors/exception.interceptor';
+import { SessionInterceptor } from './interceptors/session.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,11 @@ import { ExceptionInterceptor } from './interceptors/exception.interceptor';
     HttpClientModule,
   ],
   providers: [
+    { 
+      provide: HTTP_INTERCEPTORS, 
+      useClass: SessionInterceptor, 
+      multi: true
+    },
     { 
       provide: HTTP_INTERCEPTORS, 
       useClass: TokenInterceptor, 
