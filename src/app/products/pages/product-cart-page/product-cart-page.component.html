@@ -1,7 +1,7 @@
 <div class="cart-container mx-auto">   
     <h1>Carrito de Compras</h1>
     
-    <card-cart></card-cart>
+    <card-cart *ngFor="let product of products;" [product]="product"></card-cart>
 
     <div class="total-price">
         Total: {{1*40}}

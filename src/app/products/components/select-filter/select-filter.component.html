@@ -1,4 +1,4 @@
-<select  id="categoria" [formControl]="formControl" class="form-select">
+<select  id="categoria" [formControl]="formControl" (change)="onSelectChange($event)" class="form-select">
     <option value="" disabled selected>Categoría</option>
     <option *ngFor="let category of categories;" [value]="category.id">{{category.name}}</option>
 </select>

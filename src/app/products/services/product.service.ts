@@ -28,10 +28,10 @@ export class ProductService {
         return this.http.post<ApiResponse<Product >>(`${env.apiUrl}/product`, fData);
     }
 
-    findProducts(productName:string):Observable<ApiResponse < Array<Product> >>{
+    findProducts(productName:string):Observable<ApiResponse <Product>>{
         const url = `${env.apiUrl}/product/find-by-name/${productName}`;
 
-        return this.http.get<ApiResponse < Array<Product> >>(url);
+        return this.http.get<ApiResponse < Product >>(url);
     }
     
     deleteProducts(id:number):Observable<Boolean>{
