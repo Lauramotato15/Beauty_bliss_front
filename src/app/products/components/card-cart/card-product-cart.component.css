@@ -11,8 +11,8 @@ border-bottom: none;
 }
 
 .item-image {
-width: 80px;
-height: 80px;
+width: 15%;
+height: 15%;
 object-fit: cover;
 border-radius: 10px;
 }

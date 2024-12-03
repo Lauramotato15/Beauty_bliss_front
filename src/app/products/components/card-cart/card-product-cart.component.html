@@ -1,4 +1,4 @@
-<div class="cart-item">
+<div class="cart-item border-bottom border-dark">
     <img [src]="fullImageUrl" [alt]="product.name" class="item-image">
     
     <div class="item-details">
@@ -10,7 +10,7 @@
     
     <div class="quantity-controls">
         <button class="quantity-button">-</button>
-        <span class="quantity">1</span>
+        <span class="quantity">{{product.stock[0].quantity}}</span>
         <button class="quantity-button">+</button>
     </div>
 </div>

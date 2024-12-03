@@ -21,7 +21,7 @@ export class ProductService {
         fData.append("description", params.description);
         fData.append("brand", params.brand)
         fData.append("photo", params.photo);
-        fData.append("quantity", params.quantity.toString()); 
+        fData.append("quantity", params.stock[0].quantity.toString()); 
 
         return this.http.post<ApiResponse<Product >>(`${env.apiUrl}/product`, fData);
     }
