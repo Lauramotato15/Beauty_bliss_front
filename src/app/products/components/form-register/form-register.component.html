@@ -30,8 +30,11 @@
         <div class="form-group col-md-4">
             <div class="mb-3">
                 <label for="Photo" class="form-label">Subir Foto</label>
-                <input #filePicker (change)="onImagePicked($event)" formControlName="photo" type="file" class="form-control"
-                    id="Photo">
+                <input #filePicker (change)="onImagePicked($event)" formControlName="photo" type="file" class="form-control" id="Photo">
+
+                <span class="text-danger" *ngIf="fieldValidate('photo')">
+                    {{ showMessageError('photo') }}
+                </span>
             </div>
         </div>
     </div>
@@ -39,7 +42,10 @@
     <div class="row">
         <div class="form-group col-md-4">
             <label for="category">Categoría</label>
-            <products-select-filter [formControl]="categoryFormControl"></products-select-filter>
+            <products-select-filter formControlName="category" [formControl]="categoryFormControl"></products-select-filter>
+            <span class="text-danger" *ngIf="fieldValidate('category')">
+                {{ showMessageError('category') }}
+            </span>
         </div>
 
         <div class="form-group col-md-4">

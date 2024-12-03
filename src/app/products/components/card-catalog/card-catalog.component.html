@@ -3,9 +3,9 @@
 
     <h2 class="accordion-header bg-light border-bottom-0">
       <img 
-        aria-controls="collapseOne" 
-        src="/descarga.jpg" 
-        alt="ejemplo" 
+        aria-controls="collapseOne"
+        *ngIf="fullImageUrl"
+        [src]="fullImageUrl" 
         width="100%" 
         class="rounded-top"
       >

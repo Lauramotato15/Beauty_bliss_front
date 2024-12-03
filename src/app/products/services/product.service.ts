@@ -14,7 +14,6 @@ export class ProductService {
     }
 
     createProduct(params:Product<number>):Observable<ApiResponse<Product>>{
-        console.log("soy params desde acá",params)
         const fData = new FormData();
         fData.append("name", params.name);
         fData.append("price", params.price);

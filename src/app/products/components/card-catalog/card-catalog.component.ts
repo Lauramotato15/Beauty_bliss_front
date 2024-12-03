@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from '../../interface/product.interface';
+import { environment } from '../../../../environments/environment.development';
 @Component({
   selector: 'card-catalog',
   templateUrl: './card-catalog.component.html',
   styleUrl: './card-catalog.component.css',
 })
-export class CardCatalogComponent{
+export class CardCatalogComponent {
 
   constructor(){}; 
 
@@ -21,5 +22,12 @@ export class CardCatalogComponent{
 
   addCartSale(product:Product){
     this.onAddCart.emit(product);
+  }
+
+  get fullImageUrl() {
+    if(this.product.photo){
+      return `${environment.profilesUrl}${this.product.photo}`;
+    }
+    return;
   }
 }
