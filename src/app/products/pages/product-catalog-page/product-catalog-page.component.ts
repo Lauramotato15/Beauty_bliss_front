@@ -54,10 +54,23 @@ export class ProductCatalogPageComponent implements OnInit, OnDestroy{
     })
   }
 
-  addCartSale(product:Product){
-    this.shoppingCart.push(product);
-    console.log("soy carrito de compras",this.shoppingCart);
-    this.serviceAuth.saveLocalStorage<Array<Product>>('cart', this.shoppingCart);
+  addCartSale(product: Product) {
+    let currentCart: Product[] = this.serviceAuth.loadLocalStorage< Array <Product>>('cart'); // Asegúrate de que sea un arreglo
+    
+    if(currentCart.length){
+      if (Array.isArray(currentCart[0])) {
+        currentCart = currentCart.flat(); // Aplanamos la estructura para que todos los productos estén en un solo arreglo
+      }
+
+      currentCart.push(product);
+      this.serviceAuth.saveLocalStorage<Array<Product>>('cart', currentCart);
+      this.shoppingCart = currentCart;
+      
+    }else{
+      this.shoppingCart.push(product);
+      this.serviceAuth.saveLocalStorage<Array<Product>>('cart', this.shoppingCart);
+    }
+    
   }
   
   deleteProduct(id:number){
