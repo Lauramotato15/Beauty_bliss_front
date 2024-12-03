@@ -1,8 +1,8 @@
 <div class="container">
     <app-search-box (findByNameProduct)="searchbyName($event)"></app-search-box>
-    <div class="d-flex justify-content-end mb-3">
-        <products-select-filter></products-select-filter>
-    </div>
+    <form class="d-flex justify-content-end mb-3" [formGroup]="formCategory">
+        <products-select-filter formControlName="category" [formControl]="categoryFormControl"></products-select-filter>
+    </form>
     <div class="row" *ngIf="products.length; else mensaje">
         <div class="col-lg-3 mb-3" *ngFor="let product of products">
             <card-catalog [product]="product" (onDelete)="deleteProduct($event)" (onAddCart)="addCartSale($event)"></card-catalog>

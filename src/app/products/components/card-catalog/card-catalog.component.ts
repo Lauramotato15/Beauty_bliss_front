@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from '../../interface/product.interface';
 import { environment } from '../../../../environments/environment.development';
+import { AlertService } from '../../../shared/services/alert.service';
 @Component({
   selector: 'card-catalog',
   templateUrl: './card-catalog.component.html',
@@ -8,7 +9,7 @@ import { environment } from '../../../../environments/environment.development';
 })
 export class CardCatalogComponent {
 
-  constructor(){}; 
+  constructor(private readonly serviceAlert: AlertService){}; 
 
   @Input() public product!:Product;
 
@@ -22,6 +23,7 @@ export class CardCatalogComponent {
 
   addCartSale(product:Product){
     this.onAddCart.emit(product);
+    this.serviceAlert. showSuccess("Agregado con exito");
   }
 
   get fullImageUrl() {

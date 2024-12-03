@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { Product } from '../../interface/product.interface';
 import { ProductService } from '../../services/product.service';
 import { AuthService } from '../../../auth/services/auth.service';
+import { FormControl, FormGroup, Validators as val } from '@angular/forms';
+
 
 @Component({
   selector: 'product-catalog-page',
@@ -13,7 +15,11 @@ export class ProductCatalogPageComponent implements OnInit, OnDestroy{
 
   public subAll?:Subscription;
   public subSearch?:Subscription; 
-  public subDrop?:Subscription; 
+  public subDrop?:Subscription;
+  
+  public formCategory = new FormGroup({
+    category: new FormControl('', [val.required])
+  })
 
   public products:Product[] = []; 
   private shoppingCart:Product[] = [];
@@ -25,6 +31,7 @@ export class ProductCatalogPageComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.allProducts();
+    console.log("soy cart antes", this.shoppingCart);
   }
 
   allProducts(){
@@ -38,7 +45,7 @@ export class ProductCatalogPageComponent implements OnInit, OnDestroy{
   searchbyName(value:string){
     this.subSearch = this.serviceProduct.findProducts(value).subscribe(product => {
       if(product.success){
-        this.products.splice(0, this.products.length, product.data);
+        this.products.splice(0, this.products.length, product.data); 
       }
       
       if(!product.success){
@@ -49,6 +56,7 @@ export class ProductCatalogPageComponent implements OnInit, OnDestroy{
 
   addCartSale(product:Product){
     this.shoppingCart.push(product);
+    console.log("soy carrito de compras",this.shoppingCart);
     this.serviceAuth.saveLocalStorage<Array<Product>>('cart', this.shoppingCart);
   }
   
@@ -64,5 +72,9 @@ export class ProductCatalogPageComponent implements OnInit, OnDestroy{
     this.subAll?.unsubscribe(); 
     this.subSearch?.unsubscribe(); 
     this.subDrop?.unsubscribe(); 
+  }
+
+  get categoryFormControl(){
+    return this.formCategory.controls['category'] as FormControl;
   }
 }
