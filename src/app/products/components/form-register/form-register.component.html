@@ -1,6 +1,5 @@
 <form class="product-form" [formGroup]="formRegister" (submit)="save()">
     <h3 class="form-title">Agregar Producto</h3>
-    {{formRegister.getRawValue() | json}}
     <div class="row">
 
         <div class="form-group col-md-4">
@@ -29,16 +28,11 @@
             </span>
         </div>
         <div class="form-group col-md-4">
-            <label for="name">Nombre</label>
-            <input 
-                type="text" 
-                id="name" 
-                class="form-control" 
-                formControlName="name"
-            >
-            <span class="text-danger" *ngIf="fieldValidate('name')">
-                {{ showMessageError('name') }}
-            </span>
+            <div class="mb-3">
+                <label for="Photo" class="form-label">Subir Foto</label>
+                <input #filePicker (change)="onImagePicked($event)" formControlName="photo" type="file" class="form-control"
+                    id="Photo">
+            </div>
         </div>
     </div>
 

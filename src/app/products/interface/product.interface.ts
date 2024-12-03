@@ -1,12 +1,13 @@
 import { Category } from "../../categories/interface/category.interface";
 
-export interface Product {
+export interface Product <T = Category>{
     id: number;
     name: string;
     price: string;
-    category: Category;
+    category: T;
     description: string;
     brand: string; 
     photo: File;
+    quantity: number;
 }
   

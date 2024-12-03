@@ -60,7 +60,8 @@ export class FormRegisterComponent implements OnDestroy{
   save() {
     if (!this.formRegister.valid) return this.formRegister.markAllAsTouched();
 
-    const formValues: Product = this.formRegister.value;
+    const formValues: Product<number> = this.formRegister.value;
+    console.log("desde formulario",formValues);  
     
     this.subRegister = this.serviceProduct.createProduct({ ...formValues, photo: this.file })
     .subscribe(resp => {

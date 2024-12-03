@@ -24,14 +24,19 @@ export class SelectFilterComponent implements ControlValueAccessor ,OnInit{
   onChange: any = () => {};
   onTouched: any = () => {};
 
-
   constructor(private serviceCategory:CategoryService, private fb:FormBuilder){}
+
+  //Cuando se cambia el valor del select, angular lo ejecuta. 
   writeValue(obj: number): void {
     this.value = obj;
   }
-  registerOnChange(fn: any): void {
+
+  //Registrar el cambio
+  registerOnChange(fn: number): void {
     this.onChange = fn;
   }
+
+  //Cuando el select es tocado
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
@@ -40,19 +45,17 @@ export class SelectFilterComponent implements ControlValueAccessor ,OnInit{
     this.searchByFilter();
   }
 
-  onSelectChange(value: Event): void {
-    console.log(value)
-    // this.value = value;
-    this.onChange(value); // Notificar el cambio
-    this.onTouched(); // Marcar el control como tocado
+  //Cada que se selecciona una opcion
+  onSelectChange(event: Event): void {
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    this.onChange(selectedValue); 
+    this.onTouched(selectedValue);
   }
 
   searchByFilter(){
     this.serviceCategory.getAll().subscribe(resp => {
       if(resp.success){
-        console.log("soy repuesta", resp)
         this.categories = resp.data; 
-        console.log(this.categories);
         return; 
       }
     })

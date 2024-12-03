@@ -13,17 +13,16 @@ export class ProductService {
         return this.http.get<ApiResponse <Array <Product> >>(`${env.apiUrl}/product`);
     }
 
-    createProduct(params:Product):Observable<ApiResponse<Product >>{
+    createProduct(params:Product<number>):Observable<ApiResponse<Product>>{
+        console.log("soy params desde acá",params)
         const fData = new FormData();
         fData.append("name", params.name);
         fData.append("price", params.price);
-        fData.append("category", params.category.id.toString());
+        fData.append("id_category", params.category.toString());
         fData.append("description", params.description);
         fData.append("brand", params.brand)
-
-        if(params.photo){
-            fData.append("photo", params.photo);
-        }
+        fData.append("photo", params.photo);
+        fData.append("quantity", params.quantity.toString()); 
 
         return this.http.post<ApiResponse<Product >>(`${env.apiUrl}/product`, fData);
     }
