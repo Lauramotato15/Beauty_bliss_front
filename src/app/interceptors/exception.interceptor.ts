@@ -15,7 +15,6 @@ export class ExceptionInterceptor implements HttpInterceptor {
         
         if(resp instanceof HttpResponse){
           const response:HttpResponse<ApiResponse<unknown>> = resp;
-
           if(!response.body?.status){
             const body = response.body as FailedApiResponse;
             this.serviceAlert.showError(body.message)

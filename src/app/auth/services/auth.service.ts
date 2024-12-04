@@ -8,6 +8,7 @@ import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { User } from '../../users/interface/user.interface';
 import { UserToken } from '../interface/user-token.interface';
+import { ApiResponse } from '../../shared/interfaces/api-response.interface';
 
 @Injectable({providedIn: 'root'})
 export class AuthService{
@@ -35,8 +36,8 @@ export class AuthService{
         );
     }
 
-    logout():Observable<boolean>{
-        return this.http.get<boolean>(`${env.apiUrl}/auth/logout`);
+    logout():Observable<ApiResponse<Boolean>>{
+        return this.http.get<ApiResponse<Boolean>>(`${env.apiUrl}/auth/logout`);
     }
 
     saveLoginResponse(response: UserToken){

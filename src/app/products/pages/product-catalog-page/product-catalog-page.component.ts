@@ -31,7 +31,6 @@ export class ProductCatalogPageComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.allProducts();
-    console.log("soy cart antes", this.shoppingCart);
   }
 
   allProducts(){

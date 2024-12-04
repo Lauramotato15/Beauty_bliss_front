@@ -11,15 +11,15 @@ export class SessionInterceptor implements HttpInterceptor{
         private readonly serviceAuth: AuthService
     ) { }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return next.handle(req).pipe(
-            catchError(error  => {
-              if(error.status == 401){
-                this.serviceAlert.showError("Tu sesión ha caducado")
-                this.serviceAuth.clearStorage(); 
-                throw new Error("La sesión ha caducado");
-              }
-              throw error;
-            })
-        )
+      return next.handle(req).pipe(
+        catchError(error  => {
+          if(error.status == 401){
+            this.serviceAlert.showError("Tu sesión ha caducado")
+            this.serviceAuth.clearStorage(); 
+            throw new Error("La sesión ha caducado");
+          }
+          throw error;
+        })
+    )
     }
 }
