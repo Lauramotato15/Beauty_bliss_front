@@ -10,7 +10,7 @@ import { environment } from '../../../../environments/environment.development';
   templateUrl: './sidebar-page.component.html',
   styleUrl: './sidebar-page.component.css'
 })
-export class SidebarPageComponent implements OnDestroy, OnInit{
+export class SidebarPageComponent implements OnInit{
 
   public sub?:Subscription; 
   public userLogueado!:User;
@@ -25,16 +25,14 @@ export class SidebarPageComponent implements OnDestroy, OnInit{
     this.userLogueado = this.serviceAuth.user;
   }
 
-  logout(event: Event){
-    this.sub = this.serviceAuth.logout().subscribe();
-    event.stopPropagation();
+  logout(){
+    this.sub = this.serviceAuth.logout().subscribe(resp => {
+      this.serviceAuth.clearStorage(); 
+      this.route.navigateByUrl('auth/login');
+    });   
   }
 
   get fullImageUrl() {
     return `${environment.profilesUrl}${this.userLogueado.photo}`;
-  }
-
-  ngOnDestroy(): void {
-    this.sub?.unsubscribe(); 
   }
 }

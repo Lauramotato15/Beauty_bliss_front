@@ -16,7 +16,6 @@ export class SessionInterceptor implements HttpInterceptor{
           if(error.status == 401){
             this.serviceAlert.showError("Tu sesión ha caducado")
             this.serviceAuth.clearStorage(); 
-            throw new Error("La sesión ha caducado");
           }
           throw error;
         })
