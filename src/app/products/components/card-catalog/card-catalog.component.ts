@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../interface/product.interface';
 import { environment } from '../../../../environments/environment.development';
 import { AlertService } from '../../../shared/services/alert.service';
@@ -17,11 +17,14 @@ export class CardCatalogComponent {
 
   @Output() public onAddCart: EventEmitter<Product> = new EventEmitter<Product>(); 
 
+  public quantity:number = 0;
+ 
   deleteOne(id:number){
     this.onDelete.emit(id); 
   }
 
   addCartSale(product:Product){
+    this.product.quantity = this.quantity; 
     this.onAddCart.emit(product);
     this.serviceAlert. showSuccess("Agregado con exito");
   }
@@ -31,5 +34,17 @@ export class CardCatalogComponent {
       return `${environment.profilesUrl}${this.product.photo}`;
     }
     return;
+  }
+
+  decrement(){
+    if(this.quantity > 1) this.quantity--; 
+  }
+
+  increment(){
+    const stock = this.product.stock[0].quantity;
+    if(this.quantity > stock){
+      this.serviceAlert.showWarning("No hay suficiente stock"); 
+    } 
+    this.quantity++;
   }
 }

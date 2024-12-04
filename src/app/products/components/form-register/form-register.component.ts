@@ -61,8 +61,6 @@ export class FormRegisterComponent implements OnDestroy{
     if (!this.formRegister.valid) return this.formRegister.markAllAsTouched();
 
     const formValues: Product<number> = this.formRegister.value;
-
-    console.log("soy valor en formilario",formValues); 
     
     this.subRegister = this.serviceProduct.createProduct({ ...formValues, photo: this.file })
     .subscribe(resp => {

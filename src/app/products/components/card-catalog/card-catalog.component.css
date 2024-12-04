@@ -1,92 +1,110 @@
-  .accordion-item {
-    background-color: #fff; 
-    border: 1px solid #ddd;
-    border-radius: 10px; 
-    margin-bottom: 15px;
+.accordion-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 15px;
   }
-  
+
   .accordion-header {
-    background-color: #f4b6b6; 
-    padding: 15px 20px;
-    border-radius: 10px 10px 0 0;
-    color: #333; 
+  background-color: #f4b6b6;
+  padding: 15px 20px;
+  border-radius: 10px 10px 0 0;
+  color: #333;
   }
-  
+
   .accordion-header img {
-    border-radius: 10px; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  
+
   .accordion-body {
-    background-color: #f9f9f9; 
-    padding: 20px;
-    border-top: 1px solid #ddd; 
-    color: #333; 
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-top: 1px solid #ddd;
+  color: #333;
   }
-  
+
   .accordion-body .card-text {
-    color: #666; 
+  color: #666;
   }
-  
+
   .accordion-body .card-text strong {
-    color: #444; 
+  color: #444;
   }
-  
+
   .accordion-item .d-flex {
-    padding-top: 10px;
+  padding-top: 10px;
   }
-  
+
   .accordion-item .d-flex h4 {
-    color: #333;
+  color: #333;
   }
-  
+
   .accordion-item .d-flex i {
-    color: #007bff;
-    cursor: pointer;
-    transition: color 0.3s ease;
+  color: #007bff;
+  cursor: pointer;
+  transition: color 0.3s ease;
   }
-  
+
   .accordion-item .d-flex i:hover {
-    color: #0056b3; 
+  color: #0056b3;
   }
-  
+
   .btn-outline-danger {
-    border-color: #e0786c;
-    color: #e0786c;
-    transition: background-color 0.3s ease, color 0.3s ease;
+  border-color: #e0786c;
+  color: #e0786c;
+  transition: background-color 0.3s ease, color 0.3s ease;
   }
-  
+
   .btn-outline-danger:hover {
-    background-color: #e0786c; 
-    color: #fff;
+  background-color: #e0786c;
+  color: #fff;
   }
-  
+
   .btn-outline-success {
-    border-color: #84d196;
-    color: #84d196;;
-    transition: background-color 0.3s ease, color 0.3s ease;
+  border-color: #84d196;
+  color: #84d196;;
+  transition: background-color 0.3s ease, color 0.3s ease;
   }
-  
+
   .btn-outline-success:hover {
-    background-color: #84d196;
-    color: #fff;
+  background-color: #84d196;
+  color: #fff;
   }
-  
+
   .btn i {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
   }
 
   @media (max-width: 768px) {
-    .accordion-header {
-      padding: 10px;
-    }
-  
-    .accordion-body {
-      padding: 15px;
-    }
-  
-    .accordion-item {
-      margin-bottom: 10px;
-    }
+  .accordion-header {
+  padding: 10px;
   }
-  
+
+  .accordion-body {
+  padding: 15px;
+  }
+
+  .accordion-item {
+  margin-bottom: 10px;
+  }
+  }
+
+
+  .quantity-controls {
+  display: flex;
+  }
+
+  .quantity-button {
+  background-color: #e0786c;
+  border: 1px solid #ff7c7c;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  }
+
+  .quantity-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  }

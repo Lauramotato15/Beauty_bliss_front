@@ -7,15 +7,11 @@ import { environment } from '../../../../environments/environment.development';
   templateUrl: './card-product-cart.component.html',
   styleUrl: './card-product-cart.component.css',
 })
-export class CardProductCartComponent implements OnInit{
+export class CardProductCartComponent{
 
   @Input() public product!:Product; 
-
+  
   get fullImageUrl() {
     return `${environment.profilesUrl}${this.product.photo}`;
-  }
-  
-  ngOnInit(): void {
-    console.log(this.product); 
   }
 }
