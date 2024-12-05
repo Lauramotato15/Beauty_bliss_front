@@ -72,10 +72,6 @@
   color: #fff;
   }
 
-  .btn i {
-  font-size: 1.2rem;
-  }
-
   @media (max-width: 768px) {
   .accordion-header {
   padding: 10px;
@@ -90,16 +86,10 @@
   }
   }
 
-
-  .quantity-controls {
-  display: flex;
-  }
-
   .quantity-button {
   background-color: #e0786c;
   border: 1px solid #ff7c7c;
   color: #fff;
-  padding: 4px 10px;
   border-radius: 5px;
   cursor: pointer;
   }
@@ -108,3 +98,4 @@
   background-color: #ccc;
   cursor: not-allowed;
   }
+

@@ -47,7 +47,11 @@ export class ProductService {
         return this.http.post<ApiResponse < Sale >>(`${env.apiUrl}/sale`, saleInfo);
     }
 
-    getSaleById(){
-        return this.http.get<ApiResponse < Product >>(`${env.apiUrl}/sale`,);
+    getSaleById():Observable<ApiResponse <Array<Sale>>>{
+        return this.http.get<ApiResponse <Array<Sale>>>(`${env.apiUrl}/sale`,);
+    }
+
+    getProductsByCategory():Observable<ApiResponse <Product> >{
+        return this.http.get<ApiResponse <Product>>(`${env.apiUrl}/product`,);
     }
 }

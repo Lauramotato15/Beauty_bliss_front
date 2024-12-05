@@ -28,6 +28,7 @@ export class SidebarPageComponent implements OnInit{
   logout(){
     this.sub = this.serviceAuth.logout().subscribe(resp => {
       this.serviceAuth.clearStorage(); 
+      this.serviceAuth.clearStorageCart(); 
       this.route.navigateByUrl('auth/login');
     });   
   }

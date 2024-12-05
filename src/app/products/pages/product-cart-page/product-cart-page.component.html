@@ -1,6 +1,6 @@
-<div class="cart-container mx-auto">   
-    <h1>Carrito de Compras</h1>
-    
+<h1 class="text-center">Carrito de Compras</h1>
+<div class="cart-container mx-auto mb-1" *ngIf="products.length">   
+
     <card-cart *ngFor="let product of products;" [product]="product"></card-cart>
 
     <div class="total-price">
@@ -11,7 +11,7 @@
         <p>© 2024 Tienda Online</p>
     </div>
 
-    <div>
-        <button class="btn btn-info" (click)="addSale()">Comprar</button>
+    <div class="d-flex justify-content-end">
+        <button class="btn" (click)="addSale()">Comprar</button>
     </div>
 </div>

@@ -4,6 +4,7 @@ import { Product } from '../../interface/product.interface';
 import { ProductService } from '../../services/product.service';
 import { Sale } from '../../interface/sale.interface';
 import { SaleDetail } from '../../interface/sale-detail.interface';
+import { AlertService } from '../../../shared/services/alert.service';
 
 @Component({
   selector: 'product-cart-page',
@@ -14,7 +15,11 @@ export class ProductCartPageComponent implements OnInit{
   
   public products: Product[] = [];
 
-  constructor(private readonly serviceAuth:AuthService, private readonly serviceProduct: ProductService){}
+  constructor(
+    private readonly serviceAuth:AuthService, 
+    private readonly serviceProduct: ProductService, 
+    private readonly serviceAlert: AlertService, 
+  ){}
 
   ngOnInit(): void {
     this.products = this.serviceAuth.loadLocalStorage<Array<Product>>('cart');
@@ -25,6 +30,7 @@ export class ProductCartPageComponent implements OnInit{
     const quantity = product.quantity ?? 0;
       return acum + (quantity * +product.price);
     }, 0);
+
   }
 
   addSale(){
@@ -34,8 +40,10 @@ export class ProductCartPageComponent implements OnInit{
     }
     
     this.serviceProduct.createSale(newSale).subscribe(resp => {
-      console.log(resp);
-      this.serviceAuth.clearStorageCart(); 
+      if(resp.success){
+        this.serviceAlert.showSuccess("Compra exitosa");
+        this.serviceAuth.clearStorageCart(); 
+      }
     });
   }
 }
