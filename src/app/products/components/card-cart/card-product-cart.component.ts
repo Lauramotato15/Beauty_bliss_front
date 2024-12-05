@@ -14,4 +14,8 @@ export class CardProductCartComponent{
   get fullImageUrl() {
     return `${environment.profilesUrl}${this.product.photo}`;
   }
+
+  get total(){
+    return this.product.price as number * this.product.quantity; 
+  }
 }
