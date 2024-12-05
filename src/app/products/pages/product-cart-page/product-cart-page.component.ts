@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
 import { Product } from '../../interface/product.interface';
+import { ProductService } from '../../services/product.service';
+import { Sale } from '../../interface/sale.interface';
+import { SaleDetail } from '../../interface/sale-detail.interface';
 
 @Component({
   selector: 'product-cart-page',
@@ -11,7 +14,7 @@ export class ProductCartPageComponent implements OnInit{
   
   public products: Product[] = [];
 
-  constructor(private readonly serviceAuth:AuthService){}
+  constructor(private readonly serviceAuth:AuthService, private readonly serviceProduct: ProductService){}
 
   ngOnInit(): void {
     this.products = this.serviceAuth.loadLocalStorage<Array<Product>>('cart');
@@ -20,9 +23,19 @@ export class ProductCartPageComponent implements OnInit{
   get total(){
     return this.products.reduce((acum, product) => {
     const quantity = product.quantity ?? 0;
-      console.log({quantity, price: +product.price}, quantity * (+product.price))
       return acum + (quantity * +product.price);
     }, 0);
   }
 
+  addSale(){
+    const newSale:Sale = {
+      products: this.products.map<SaleDetail>(p => ({ quantity: p.quantity, id_product: p.id, total_value: p.quantity * (+p.price) })), 
+      total_value: this.total,
+    }
+    
+    this.serviceProduct.createSale(newSale).subscribe(resp => {
+      console.log(resp);
+      this.serviceAuth.clearStorageCart(); 
+    });
+  }
 }

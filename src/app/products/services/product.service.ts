@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../../environments/environment.development';
 import { Product } from '../interface/product.interface';
 import { ApiResponse } from '../../shared/interfaces/api-response.interface';
+import { Sale } from '../interface/sale.interface';
 @Injectable({providedIn: 'root'})
 export class ProductService {
 
@@ -31,10 +32,22 @@ export class ProductService {
 
         return this.http.get<ApiResponse < Product >>(url);
     }
+
+    findProductsByCategory(){
+
+    }
     
     deleteProducts(id:number):Observable<Boolean>{
         const url = `${env.apiUrl}/product/${id}`; 
 
         return this.http.delete<Boolean>(url);
+    }
+
+    createSale(saleInfo: Sale):Observable<ApiResponse<Sale>> {
+        return this.http.post<ApiResponse < Sale >>(`${env.apiUrl}/sale`, saleInfo);
+    }
+
+    getSaleById(){
+        return this.http.get<ApiResponse < Product >>(`${env.apiUrl}/sale`,);
     }
 }
