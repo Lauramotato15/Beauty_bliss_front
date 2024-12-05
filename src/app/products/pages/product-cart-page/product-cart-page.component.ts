@@ -10,16 +10,19 @@ import { Product } from '../../interface/product.interface';
 export class ProductCartPageComponent implements OnInit{
   
   public products: Product[] = [];
-  public total!:number;
 
   constructor(private readonly serviceAuth:AuthService){}
 
   ngOnInit(): void {
     this.products = this.serviceAuth.loadLocalStorage<Array<Product>>('cart');
-    const total:number = this.products.reduce((acum, product) => {
-      return acum + (product.quantity * product.price);
-    }, 0);
-    
-    console.log("soy total",total);
   }
+
+  get total(){
+    return this.products.reduce((acum, product) => {
+    const quantity = product.quantity ?? 0;
+      console.log({quantity, price: +product.price}, quantity * (+product.price))
+      return acum + (quantity * +product.price);
+    }, 0);
+  }
+
 }

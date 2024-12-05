@@ -17,7 +17,7 @@ export class CardCatalogComponent {
 
   @Output() public onAddCart: EventEmitter<Product> = new EventEmitter<Product>(); 
 
-  public quantity:number = 0;
+  public quantity:number = 1;
  
   deleteOne(id:number){
     this.onDelete.emit(id); 
