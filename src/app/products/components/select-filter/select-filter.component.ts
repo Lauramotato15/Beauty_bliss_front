@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators as val} from '@angular/forms';
 import { CategoryService } from '../../../categories/services/category.service';
 import { Category } from '../../../categories/interface/category.interface';
@@ -20,11 +20,23 @@ export class SelectFilterComponent implements ControlValueAccessor ,OnInit{
  
   @Input() public formControl!:FormControl;
 
+  @Output() onSelectedCategory: EventEmitter<number> = new EventEmitter<number>();
+
   value!: number;
   onChange: any = () => {};
   onTouched: any = () => {};
 
   constructor(private serviceCategory:CategoryService, private fb:FormBuilder){}
+
+
+  searchByFilter(){
+    this.serviceCategory.getAll().subscribe(resp => {
+      if(resp.success){
+        this.categories = resp.data; 
+        return; 
+      }
+    })
+  }  
 
   //Cuando se cambia el valor del select, angular lo ejecuta. 
   writeValue(obj: number): void {
@@ -50,15 +62,8 @@ export class SelectFilterComponent implements ControlValueAccessor ,OnInit{
     const selectedValue = (event.target as HTMLSelectElement).value;
     this.onChange(selectedValue); 
     this.onTouched(selectedValue);
-  }
-
-  searchByFilter(){
-    this.serviceCategory.getAll().subscribe(resp => {
-      if(resp.success){
-        this.categories = resp.data; 
-        return; 
-      }
-    })
+    this.value = +selectedValue; 
+    this.onSelectedCategory.emit(this.value);
   }
 }
 

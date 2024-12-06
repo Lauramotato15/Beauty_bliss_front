@@ -89,4 +89,16 @@ export class ProductCatalogPageComponent implements OnInit, OnDestroy{
   get categoryFormControl(){
     return this.formCategory.controls['category'] as FormControl;
   }
+
+
+  findByCategory(value:number){
+    this.serviceProduct.getProductsByCategory(value).subscribe(resp => {
+      if(resp.data.length){
+        this.products = resp.data; 
+        return;
+      }else{
+        this.allProducts(); 
+      }
+    });
+  }
 }

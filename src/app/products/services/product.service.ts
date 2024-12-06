@@ -33,9 +33,10 @@ export class ProductService {
         return this.http.get<ApiResponse < Product >>(url);
     }
 
-    findProductsByCategory(){
-
-    }
+    getProductsByCategory(idCategory:number):Observable<ApiResponse < Array <Product> >>{
+        const url = `${env.apiUrl}/product/find-by-category/${idCategory}`;
+        return this.http.get<ApiResponse < Array <Product> >>(url);
+    } 
     
     deleteProducts(id:number):Observable<Boolean>{
         const url = `${env.apiUrl}/product/${id}`; 
@@ -49,9 +50,5 @@ export class ProductService {
 
     getSaleById():Observable<ApiResponse <Array<Sale>>>{
         return this.http.get<ApiResponse <Array<Sale>>>(`${env.apiUrl}/sale`,);
-    }
-
-    getProductsByCategory():Observable<ApiResponse <Product> >{
-        return this.http.get<ApiResponse <Product>>(`${env.apiUrl}/product`,);
     }
 }
